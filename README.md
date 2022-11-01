@@ -1,9 +1,5 @@
 ### Hi there 👋
-### this repository is to make python hard
-<!--
-**VIRUSGAMING64/VIRUSGAMING64** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
+### this repository is to make python hard and c++
 
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
@@ -13,4 +9,4 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
--->
+
