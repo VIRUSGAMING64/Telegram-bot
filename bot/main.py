@@ -36,5 +36,5 @@ async def on_message(client,message):
         await bot.send_message(ID,cmd)
     except:
         pass
-
+    
 bot.run()
