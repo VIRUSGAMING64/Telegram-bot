@@ -4,22 +4,30 @@ from utils import *
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 whait_for_filename = False
+change_dir = False
 
 bot = Client("bot", API_ID, API_HASH)
 
 @bot.on_message(filters.private)
 async def on_message(client,message):
-    global whait_for_filename
+    global whait_for_filename,change_dir
     ID = message.chat.id
     msg = message.text
-    if(whait_for_filename == True):
+
+    if msg == "/chdir":
+        await bot.send_message(ID,'enter directory name: ')
+        change_dir = True
+        return
+    elif(change_dir == True):
+        change_dir = False
+        msg = chdir(msg)
+        await bot.send_message(ID,msg)
+    elif(whait_for_filename == True):
         whait_for_filename = False
         await bot.send_document(ID,msg)
-        return
     elif(message.text == '/sendfile'):
         await bot.send_message(ID,'send file name')
         whait_for_filename = True
-        return
     else:
         cmd = command(msg)   
         if cmd == "":
