@@ -257,7 +257,7 @@ using namespace chrono;
 
 inline void core1()
 {
-   int n;
+    
 }
 
 inline void core2()
