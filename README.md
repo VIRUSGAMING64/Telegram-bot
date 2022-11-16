@@ -1,6 +1,6 @@
-### Hi there 👋
-### Repository of useful functions and scripts in C++ and Python
-# 1- Updates all week
+# Hi there 👋
+## Repository of useful functions and scripts in C++ and Python
+### 1- Updates all week
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
