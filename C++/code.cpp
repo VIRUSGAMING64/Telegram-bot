@@ -257,7 +257,7 @@ using namespace chrono;
 
 inline void core1()
 {
-    
+
 }
 
 inline void core2()
@@ -1394,7 +1394,48 @@ inline ll moddiv(ll num, ll den, ll m)        // den and m must be coprime
     }
     return (num * modinv(den,m) ) % m ;
 }
-    
+/*
+For call DSU class 
+move to the start of the
+file or create reference
+*/
+class DSU
+{
+public:
+    vector<int> sizes,parent;
+    DSU(int n)
+    {
+        sizes.resize(n);
+        parent.resize(n);
+        for(int i=0;i<n;i++)
+        {
+            sizes[i] = 1;
+            parent[i] = i;
+        }
+    }
+    int find(int x)
+    {
+        if(x==parent[x])
+        {
+            return x;
+        }
+        else
+        {
+            return parent[x] = find(parent[x]);
+        }
+    }
+    bool join(int a,int b)
+    {
+        a = find(a);
+        b = find(b);
+        if(a==b)return false;
+        if(sizes[b] > sizes[a])swap(a,b);
+        sizes[a] += sizes[b];
+        parent[b] = a;
+        return true; 
+    }
+};
+
               inicio                                                                                                                                                                                                                                  /*
              USERNAMES
  * * * * * * * * * * * * * * * * * *
