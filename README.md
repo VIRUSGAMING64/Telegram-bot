@@ -1,8 +1,7 @@
 # Hi there 👋
 ## Repository of useful functions and scripts in C++ and Python
 ### 1- Updates all week
-### to use the telegram bot use the command:
-        `python -m pip install pyogram`
+### to use the telegram bot use the command:`python -m pip install pyogram`
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
