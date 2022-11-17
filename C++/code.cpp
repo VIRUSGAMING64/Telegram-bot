@@ -6,6 +6,7 @@
 #include <ext/rope>
 #include <bits/stdc++.h>
 using namespace std;
+vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x);
 #define vvT vector<vector<T> >
 #define TCT template<class T>
 #define all(x) (x).begin(),(x).end()
@@ -48,7 +49,6 @@ using namespace std;
 #define RAYA cout<<"==========================================="<<endl
 #define COUNTBITS(a) __builtin_popcount((a))
 #define outputfile freopen("salida.txt","w",stdout);
-
 struct block
 {
     int act=0;
@@ -1435,6 +1435,33 @@ public:
         return true; 
     }
 };
+
+
+vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x)
+{
+    vector<int> dist(g.size(),10000000);
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> q;
+    dist[x] = 0;
+    q.push({0,x});
+    while (!q.empty())
+    {
+        int a = q.top().second;
+        q.pop();
+        for(auto c:g[a])
+        {
+            int 
+            w = c.second,
+            b=c.first;
+            if(dist[a]+w < dist[b])
+            {
+                dist[b] = dist[a]+w;
+                q.push({-dist[b],b});
+            }
+        }
+    }
+    return dist;
+}
+
 
               inicio                                                                                                                                                                                                                                  /*
              USERNAMES
