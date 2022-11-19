@@ -1,10 +1,12 @@
 from pyrogram import Client, filters
 from utils import *
 
+# GLOBAL VARIABLES
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 whait_for_filename = False
 change_dir = False
+# END GLOBAL VARIABLES
 
 bot = Client("bot", API_ID, API_HASH)
 
@@ -36,5 +38,5 @@ async def on_message(client,message):
         await bot.send_message(ID,cmd)
     except:
         pass
-    
+
 bot.run()
