@@ -1,9 +1,8 @@
-#include <string>
-#include <iostream>
-#include <filesystem>
-namespace fs = std::filesystem;
-
+#pragma GCC optimize("Ofast")
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long 
 int main()
 {
-    
+  
 }
