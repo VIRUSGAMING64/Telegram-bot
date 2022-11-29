@@ -32,11 +32,11 @@
 ### use  `cout << modsum(8,14,10) << endl;`
 # example: 
 
-int main()
-{
-    HINSTANCE LibDLL = LoadLibraryA("math.dll");
-    typedef ll (WINAPI* op)(ll a,ll b,ll mod);
-    op suma;
-    suma = (op)GetProcAddress(LibDLL, "modsum");
-    cout << suma(8,18,10) << endl;
-}
+`int main()`
+`{`
+`    HINSTANCE LibDLL = LoadLibraryA("math.dll");`
+`    typedef ll (WINAPI* op)(ll a,ll b,ll mod);`
+`    op suma;`
+`    suma = (op)GetProcAddress(LibDLL, "modsum");`
+`    cout << suma(8,18,10) << endl;`
+`}`
