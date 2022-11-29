@@ -1,5 +1,5 @@
 import os
-
+import threading as th
 
 def dfs(path):
     try:
@@ -16,8 +16,9 @@ def dfs(path):
     except:
         return
     for i in l:
-        dfs(path + "\\" + i)
-
+        res = path + "\\" + i
+        res = th.Thread(target=dfs,args=[res])
+        res.start()
 
 path = os.getcwd()
 i = input("delete all .exe in " + path + " ?  Y/N  > ")

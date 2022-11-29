@@ -1435,7 +1435,6 @@ class DSU
     }
 };
 
-
 vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x)
 {
     vector<int> dist(g.size(),10000000);

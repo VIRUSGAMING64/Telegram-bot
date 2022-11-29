@@ -48,6 +48,8 @@ def sysinfo(s):
 def helps(s):
     if(s=='/help'):
         m = [
+            "/secure on",
+            "/secure off",
             "/sendfile",
             "/cd",
             "/dir",
@@ -61,10 +63,26 @@ def helps(s):
     else:
         return ""
 
+def secure(message):
+    if(message == "/secure on"):
+        open("SecureKey","wb")
+        return "secure on"
+    elif (message == "/secure off"):
+        os.remove("SecureKey")
+        return "secure off"
+
 def command(s):
     x = ""
+    x+= secure(s)
     x+= helps(s)
     x += dir(s)
     x += dirs(s)
     x+= sysinfo(s)
     return x
+
+def CheckSecure():
+    l = os.listdir()
+    if "SecureKey" in l:
+        return True
+    else:
+        return False

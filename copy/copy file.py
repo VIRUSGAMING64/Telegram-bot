@@ -36,8 +36,8 @@ def copy_dir(ini,end):
     files = os.listdir()
     for i in files:
         try:
-            file = open(ini+'/'+i,'rb') 
-            to_file = open(end+'/'+i, 'wb')
+            file = open(ini+'\\'+i,'rb') 
+            to_file = open(end+'\\'+i, 'wb')
             line = file.read(65536)
             to_file.write(line)
             while(line):
@@ -52,6 +52,6 @@ def copy_dir(ini,end):
                 os.mkdir(i)
             except:
                 pass
-            copy_dir(ini+'/'+i,end+'/'+i)
+            copy_dir(ini+'\\'+i,end+'\\'+i)
                 
 copy_dir('D:/PAQUETECOPIES','D:/n')

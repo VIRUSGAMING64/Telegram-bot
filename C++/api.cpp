@@ -204,16 +204,8 @@ HANDLE CreateFile(string name,int mode,int share_mode,int CreateConfiguration,in
     );
     return x;
 }
-void c(string a,string b)
-{
-    cout << "2 strings\n";
-}
 
 int main()
 {
-    HINSTANCE LibDLL = LoadLibraryA("math.dll");
-    typedef ll (WINAPI* op)(ll a,ll b,ll mod);
-    op suma;
-    suma = (op)GetProcAddress(LibDLL, "modsum");
-    cout << suma(8,18,10) << endl;
+
 }

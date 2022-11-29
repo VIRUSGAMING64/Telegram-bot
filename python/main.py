@@ -1,3 +1,4 @@
+import socket
 import os
 import os.path as path
 import threading as th
@@ -21,6 +22,23 @@ class queue:
             return 0
         return 1
 
+class serv:
+    """Basic TCP/IP server"""
+    SOCK = ""
+    IP = ""
+    PORT = 0
+    def serv(self,ip = "localhost", port = 60000):
+        self.IP = ip
+        self.PORT = port
+        self.SOCK = socket.socket()
+    def bind(self):
+        self.SOCK.bind((self.IP,self.PORT))
+    
+    def accept(self):
+        return self.SOCK.accept()
+    def SetTimeOut(self,n):
+        self.SOCK.settimeout(n)
+        
 def get_access(rute):
     try:
         os.access(rute,3)
@@ -111,3 +129,10 @@ def makeG(n,m):
         g[a].append(b)
         g[b].append(a)
     return g
+
+def CreateDirectory(str):
+    try:
+        os.mkdir(str)
+        return True
+    except:
+        return False
