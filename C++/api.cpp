@@ -1,5 +1,6 @@
 #pragma comment(linker, "/STACK:16777216")
 #include <windows.h>
+#include <powrprof.h>
 #include <bits/stdc++.h>
 #define pause system("pause")
 #define ll long long
@@ -208,18 +209,11 @@ void c(string a,string b)
     cout << "2 strings\n";
 }
 
-int ID;
-void th()
-{
-    ID = GetThisProcessID();
-    while(true)
-    {
-        Sleep(100);
-        Beep(1100,100);
-    }
-}
-
 int main()
 {
-    
+    HINSTANCE LibDLL = LoadLibraryA("math.dll");
+    typedef ll (WINAPI* op)(ll a,ll b,ll mod);
+    op suma;
+    suma = (op)GetProcAddress(LibDLL, "modsum");
+    cout << suma(8,18,10) << endl;
 }
