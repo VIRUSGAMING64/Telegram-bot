@@ -130,6 +130,9 @@ def makeG(n,m):
         g[b].append(a)
     return g
 
+def Remove(str):
+    os.remove(str)
+
 def CreateDirectory(str):
     try:
         os.mkdir(str)
