@@ -9,8 +9,6 @@ change_dir = False
 # END GLOBAL VARIABLES
 
 bot = Client("bot", API_ID, API_HASH)
-bot.message_cache.capacity = 2 ** 16
-bot.set_username("VIRUSGAMING_HOLA")
 
 @bot.on_message(filters.private)
 async def on_message(client, message):
