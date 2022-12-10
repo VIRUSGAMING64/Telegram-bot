@@ -70,14 +70,19 @@ def secure(message):
     elif (message == "/secure off"):
         os.remove("SecureKey")
         return "secure off"
+    else:
+        return ""
 
 def command(s):
     x = ""
-    x+= secure(s)
-    x+= helps(s)
+    x += secure(s)
+    x += helps(s)
     x += dir(s)
     x += dirs(s)
-    x+= sysinfo(s)
+    x += sysinfo(s)
+    
+    if x == "":
+        x = "no commands..."
     return x
 
 def CheckSecure():

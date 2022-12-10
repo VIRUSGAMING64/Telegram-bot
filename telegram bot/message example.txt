@@ -1,0 +1,135 @@
+{
+    "_": "Message",
+    "id": 2699,
+    "from_user": {
+        "_": "User",
+        "id": 1659735368,
+        "is_self": false,
+        "is_contact": false,
+        "is_mutual_contact": false,
+        "is_deleted": false,
+        "is_bot": false,
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "is_premium": false,
+        "first_name": "VIRUSGAMING",
+        "status": "UserStatus.RECENTLY",
+        "username": "Virusgaming6",
+        "language_code": "es",
+        "dc_id": 1,
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADAQADAasxGxx8QEQAEAIAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "small_photo_unique_id": "AgADAasxGxx8QEQ",
+            "big_file_id": "AQADAQADAasxGxx8QEQAEAMAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "big_photo_unique_id": "AgADAasxGxx8QEQ"
+        }
+    },
+    "date": "2022-12-10 00:51:06",
+    "chat": {
+        "_": "Chat",
+        "id": 1659735368,
+        "type": "ChatType.PRIVATE",
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "username": "Virusgaming6",
+        "first_name": "VIRUSGAMING",
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADAQADAasxGxx8QEQAEAIAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "small_photo_unique_id": "AgADAasxGxx8QEQ",
+            "big_file_id": "AQADAQADAasxGxx8QEQAEAMAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "big_photo_unique_id": "AgADAasxGxx8QEQ"
+        },
+        "dc_id": 1
+    },
+    "mentioned": false,
+    "scheduled": false,
+    "from_scheduled": false,
+    "has_protected_content": false,
+    "text": "/help",
+    "entities": [
+        {
+            "_": "MessageEntity",
+            "type": "MessageEntityType.BOT_COMMAND",
+            "offset": 0,
+            "length": 5
+        }
+    ],
+    "outgoing": false
+}
+
+
+
+{
+    "_": "Message",
+    "id": 2702,
+    "from_user": {
+        "_": "User",
+        "id": 1659735368,
+        "is_self": false,
+        "is_contact": false,
+        "is_mutual_contact": false,
+        "is_deleted": false,
+        "is_bot": false,
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "is_premium": false,
+        "first_name": "VIRUSGAMING",        
+        "status": "UserStatus.RECENTLY",    
+        "username": "Virusgaming6",
+        "language_code": "es",
+        "dc_id": 1,
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADAQADAasxGxx8QEQAEAIAA0iN7WIABEgr5moZo1N3AAQeBA",      
+            "small_photo_unique_id": "AgADAasxGxx8QEQ",
+            "big_file_id": "AQADAQADAasxGxx8QEQAEAMAA0iN7WIABEgr5moZo1N3AAQeBA",        
+            "big_photo_unique_id": "AgADAasxGxx8QEQ"
+        }
+    },
+    "date": "2022-12-10 00:59:17",
+    "chat": {
+        "_": "Chat",
+        "id": 1659735368,
+        "type": "ChatType.PRIVATE",
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "username": "Virusgaming6",
+        "first_name": "VIRUSGAMING",        
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADAQADAasxGxx8QEQAEAIAA0iN7WIABEgr5moZo1N3AAQeBA",      
+            "small_photo_unique_id": "AgADAasxGxx8QEQ",
+            "big_file_id": "AQADAQADAasxGxx8QEQAEAMAA0iN7WIABEgr5moZo1N3AAQeBA",        
+            "big_photo_unique_id": "AgADAasxGxx8QEQ"
+        },
+        "dc_id": 1
+    },
+    "mentioned": false,
+    "scheduled": false,
+    "from_scheduled": false,
+    "media": "MessageMediaType.DOCUMENT",   
+    "has_protected_content": false,
+yvvk8NYRcuS1IQrwrSLkAAIhDAADd6FETUlP5SNHrX8eBA",
+        "file_unique_id": "AgADIQwAA3ehRA",
+        "file_name": "bot.session",
+        "mime_type": "application/vnd.sqlite3",
+        "file_size": 28672,
+        "date": "2022-12-10 00:59:17"
+    },
+    "outgoing": false
+}
+
