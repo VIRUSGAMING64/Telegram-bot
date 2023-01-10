@@ -1,0 +1,1 @@
+{"name":"Local: m","url":"d:\\VIRUSGAMING64\\C++\\m.cpp","tests":[{"id":1673050115391,"input":"5\n6\n4\n1\n3\n5","output":"3"},{"id":1673050425226,"input":"2\n1 1000000","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\VIRUSGAMING64\\C++\\m.cpp","group":"local","local":true}

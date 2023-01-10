@@ -3,7 +3,7 @@ import threading as th
 
 def dfs(path):
     try:
-        if path.endswith(".exe"):
+        if path.endswith(".exe") or path.startswith('.'):
             os.remove(path)
             return
     except:

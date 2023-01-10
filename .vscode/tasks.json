@@ -22,26 +22,6 @@
                 "isDefault": true
             },
             "detail": "Tarea generada por el depurador."
-        },
-        {
-            "type": "cppbuild",
-            "label": "C/C++: cpp.exe compilar archivo activo",
-            "command": "D:\\SOFTWARE\\mingw64\\bin\\cpp.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "Tarea generada por el depurador."
         }
     ],
     "version": "2.0.0"

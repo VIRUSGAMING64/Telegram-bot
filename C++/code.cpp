@@ -30,9 +30,9 @@ vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x);
 #define endl "\n"
 #define pb push_back
 #define vi vector<int>
+#define vvi vector<vi >
 #define pii pair<int,int>
 #define vpii vector<pii>
-#define vvi vector<vi >
 #define vvl vector<vl >
 #define vbool vector<bool>
 #define vl vector<ll>
@@ -43,7 +43,7 @@ vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x);
 #define sz size()
 #define fast ios::sync_with_stdio(0);cin.tie(0)
 #define ms998  for(int i=0;i<10e6*8+10e6+10e5*5;i++){cnt++;}
-#define inicio int main(){threads();return 0;}
+#define inicio auto main() -> int {threads();return 0;}
 #define NO cout<<"NO"<<endl
 #define YES cout<<"YES"<<endl
 #define RAYA cout<<"==========================================="<<endl
@@ -244,7 +244,6 @@ using namespace __gnu_pbds;
 using namespace __gnu_cxx;
 using namespace chrono;
 /*
-
                              /*************************************
                               *DELPHI LIC: 44CL-J9DD2M-K9N567-AE8D*
                               *************************************/
@@ -284,7 +283,7 @@ inline void core4()
 
 inline ld integral(ld func(ld x),ld a,ld b)
 {
-    int N = 1000000;
+    int N = 100000;
     ld h = (b - a) / N;
     ld s = func(a) + func(b);
     for(int i = 0; i <= N; ++i)
@@ -544,7 +543,7 @@ inline vector<edge> makeG(int aristas,bool dirigido = false)
 
 
 template<class T>
-inline void dfs(T x,vector<bool>& visited,vvT grafo)
+inline void dfs(T x,vector<bool>& visited,vvT &grafo)
 {
     if(visited[x])return;
     visited[x] = true;
@@ -1458,7 +1457,6 @@ vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x)
     }
     return dist;
 }
-
 
 inicio                                                                                                                                                                                                                                  /*
 USERNAMES

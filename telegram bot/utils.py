@@ -30,7 +30,7 @@ def dirs(s):
         return ""
 
 def sysinfo(s):
-    if(s == '/system info'):
+    if(s == '/system_info'):
         try:
             os.system('systeminfo > m')
             f = open('m')
@@ -54,7 +54,7 @@ def helps(s):
             "/cd",
             "/dir",
             "/chdir",
-            "/system info"
+            "/system_info"
         ]
         msg = ""
         for i in m:

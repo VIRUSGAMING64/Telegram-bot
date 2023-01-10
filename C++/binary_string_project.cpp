@@ -536,22 +536,48 @@ bool operator>=(bin_str a,bin_str b)
 	return f1;
 }
 
+void operator--(bin_str &a)
+{
+	if(a == bin_str(0))return;
+	if(a.str[a.size()-1] == '1')
+	{
+		a.str[a.size()-1] = '0';
+	}
+	else
+	{
+		int i = a.size()-1;
+		while(a.str[i] == '0')
+		{
+			a.str[i] = '1';
+			i--;
+		}
+		a.str[i] = '0';
+	}
+}
+
 bin_str __div(bin_str a,bin_str b)
 {
-	if(b == "0")exit(0);
-	bin_str l(0),r(a);
+	/*
+	Repair function to divide 
+	*/
+	if(b  > a )return 0;
+	if(b == "0")return 0;
+	bin_str l(0),r(a+1);
 	bin_str res(0);
-	while(l <= r)
+	while(l<=r)
 	{
 		bin_str m = (l + r) >> 1;
 		res = m;
-		if(res * b == a)break;
-		if(res * b > a)
+		auto aux = (res*b);
+		if(aux == a || aux +1 == a)break; 
+		if(bin_str(aux.str) > bin_str(a.str))
 		{
+			--m;
 			r = m;
 		}
 		else
 		{
+			++m;
 			l = m;
 		}
 	}
@@ -562,5 +588,5 @@ bin_str __div(bin_str a,bin_str b)
 
 int main()
 {
-	
+		
 }
