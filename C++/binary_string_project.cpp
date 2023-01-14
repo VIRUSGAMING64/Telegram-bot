@@ -123,6 +123,7 @@ istream& operator>>(istream& in,bin_str& str)
 	return in;
 }
 
+
 void operator++(bin_str& str)
 {
 	if(str.str[str.size() - 1] == '0')
