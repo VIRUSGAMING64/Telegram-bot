@@ -1,6 +1,5 @@
 import os
 import os.path as path
-from pyrogram import Client, filters
 
 def dir(s):
     if(s == '/cd'):

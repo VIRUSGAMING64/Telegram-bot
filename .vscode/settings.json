@@ -38,7 +38,10 @@
         "ranges": "cpp",
         "streambuf": "cpp",
         "string": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

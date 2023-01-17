@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="include/brain.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <input type="color" name="1" id="in">
+    <button onclick='$("in")'>get</button>
+    <script>
+        var color
+        function $(id)
+        {
+            color = document.getElementById(id).value;
+            console.log(color)
+        }
+        const net = new brain.neuralNetwork()
+        net.train(
+            {input:[255,255,255],output:[1]},
+            {input:[0,0,0],output:[0]},
+            {input:[255,0,255],output:[1]},
+            {input:[0,255,0],output:[0]}
+        )
+    </script>
+</body>
+</html>
