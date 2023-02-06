@@ -11,8 +11,8 @@ void tester(int x,int y)
 
 vector<vector<ld>> test
 {
-  {},
-  {}
+  {1},
+  {2}
 };
 ld rate = 0.000001;
 
