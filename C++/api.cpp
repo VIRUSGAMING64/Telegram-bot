@@ -207,5 +207,4 @@ HANDLE CreateFile(string name,int mode,int share_mode,int CreateConfiguration,in
 
 int main()
 {
-
 }

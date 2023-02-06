@@ -1,30 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="include/brain.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <script src="nodejs/brain.js"></script>
+    <script src="nodejs/jscolor.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
-</head>
-<body>
-    <input type="color" name="1" id="in">
-    <button onclick='$("in")'>get</button>
+  </head>
+  <body>
+    <button onclick="test()">test_color</button>
+    <input type="color" id="in" />
     <script>
-        var color
-        function $(id)
-        {
-            color = document.getElementById(id).value;
-            console.log(color)
+      function num_rgb(R) {
+        /*
+        #FRANCIS
+        */
+        var ans = 0;
+        for (var i = 0; i < 2; i++) {
+          var value = 0;
+          ans *= 16;
+          var a = "a".charCodeAt();
+          var f = "f".charCodeAt();
+          var c = R[i].charCodeAt();
+          if (c >= a && c <= f) {
+            value = c - a + 10;
+          } else {
+            value = c - "0".charCodeAt();
+          }
+          ans += value;
         }
-        const net = new brain.neuralNetwork()
-        net.train(
-            {input:[255,255,255],output:[1]},
-            {input:[0,0,0],output:[0]},
-            {input:[255,0,255],output:[1]},
-            {input:[0,255,0],output:[0]}
-        )
+        return ans;
+      }
+
+      function hexatorgb(color) {
+        var R = "",
+          G = "",
+          B = "";
+        var cnt = 0;
+        for (var i = 1; i < color.length; i++) {
+          if (cnt < 2) {
+            R += color[i];
+          }
+          if (cnt >= 2 && cnt < 4) {
+            G += color[i];
+          }
+          if (cnt >= 4) {
+            B += color[i];
+          }
+          cnt++;
+        }
+        R = num_rgb(R);
+        G = num_rgb(G);
+        B = num_rgb(B);
+        return {
+          a: R,
+          b: G,
+          c: B,
+        };
+      }
+      function $(s) {
+        return getElementById(s);
+      }
+      function log(s) {
+        console.log(s);
+      }
+      function test() {
+        var ent = document.getElementById("in").value;
+        ent = hexatorgb(ent);
+        var out = net.run(ent).o;
+        log(out);
+        if (out > 0.5) {
+          log("BLANCO");
+        } else {
+          log("NEGRO");
+        }
+      }
+
+      var _data = [
+        { input: { a: 255, b: 255, c: 255 }, output: { o: 1 } },
+        { input: { a: 0, b: 0, c: 0 }, output: { o: 1 } },
+      ];
+      //setInterval(test,100)
+      var net = new brain.NeuralNetwork();
+      net.trainOpts.log = true;
+      net.trainOpts.logPeriod = 1000;
+      net.train(_data);
+      log(net.toJSON());
     </script>
-</body>
+  </body>
 </html>

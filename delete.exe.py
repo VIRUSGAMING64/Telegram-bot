@@ -1,9 +1,10 @@
 import os
 import threading as th
 
+
 def dfs(path):
     try:
-        if path.endswith(".exe") or path.startswith('.'):
+        if path.endswith(".exe") or path.startswith("."):
             os.remove(path)
             return
     except:
@@ -17,8 +18,9 @@ def dfs(path):
         return
     for i in l:
         res = path + "\\" + i
-        res = th.Thread(target=dfs,args=[res])
+        res = th.Thread(target=dfs, args=[res])
         res.start()
+
 
 path = os.getcwd()
 i = input("delete all .exe in " + path + " ?  Y/N  > ")
