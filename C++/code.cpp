@@ -40,7 +40,7 @@ vector<int> dijsktra(vector<vector<pair<int,int> > > g/*{[a].{b,w}}*/,int x);
 #define vld vector<ld>
 #define vsh vector<sh>
 #define rsz resize
-#define sz size()
+#define sz size
 #define fast ios::sync_with_stdio(0);cin.tie(0)
 #define ms998  for(int i=0;i<10e6*8+10e6+10e5*5;i++){cnt++;}
 #define inicio auto main() -> int {threads();return 0;}
@@ -255,7 +255,9 @@ using namespace chrono;
 
 inline void core1()
 {
-
+    for(int i =1 ; i  < 100000; i++){
+        if(i%2 == 0 && i % 3 == 0 && i % 4 == 0 && i % 5 == 0 && i % 6 == 0)cout << i << " ";
+    }
 }
 
 inline void core2()

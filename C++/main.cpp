@@ -1,41 +1,38 @@
 #define UNICODE 1
 #define _UNICODE 1
-
-/* The code of interest is in the subroutine GetDriveGeometry. The
-   code in main shows how to interpret the results of the call. */
 #include <bits/stdc++.h>
 #include <windows.h>
 #include <winioctl.h>
-#include <stdio.h>
-/*
-10279
-*/
+#include <stdio.h> 
 #define wszDrive "\\\\.\\PhysicalDrive0"
 using namespace std;
 BOOL GetDriveGeometry(LPCSTR wszPath,DISK_GEOMETRY* pdg)
 {
-    HANDLE hDevice = INVALID_HANDLE_VALUE;  // handle to the drive to be examined 
-    BOOL bResult = FALSE;                 // results flag
-    DWORD junk = 0;                     // discard results
+    HANDLE hDevice = INVALID_HANDLE_VALUE; 
+    BOOL bResult = FALSE;          
+    DWORD junk = 0;                
 
-    hDevice = CreateFileA(wszPath,          // drive to open
-        0,                // no access to the drive
-        FILE_SHARE_READ | // share mode
+    hDevice = CreateFileA(wszPath, 
+        0,                
+        FILE_SHARE_READ |
         FILE_SHARE_WRITE,
-        NULL,             // default security attributes
-        OPEN_EXISTING,    // disposition
-        0,                // file attributes
-        NULL);            // do not copy file attributes
+        NULL,            
+        OPEN_EXISTING,   
+        0,               
+        NULL);            
 
-    if(hDevice == INVALID_HANDLE_VALUE)    // cannot open the drive
+    if(hDevice == INVALID_HANDLE_VALUE)    
     {
         return (FALSE);
     }
 
-    bResult = DeviceIoControl(hDevice,                       // device to be queried
+    bResult = DeviceIoControl(
+        hDevice,                       // device to be queried
         IOCTL_DISK_GET_DRIVE_GEOMETRY, // operation to perform
-        NULL,0,                       // no input buffer
-        pdg,sizeof(*pdg),            // output buffer
+        NULL,
+        0,                       // no input buffer
+        pdg,
+        sizeof(*pdg),            // output buffer
         &junk,                         // # bytes returned
         (LPOVERLAPPED)NULL);          // synchronous I/O
 
@@ -44,13 +41,12 @@ BOOL GetDriveGeometry(LPCSTR wszPath,DISK_GEOMETRY* pdg)
     return (bResult);
 }
 
-
 int main()
 {
+    DISK_LOGGING logdisk = {0};
     DISK_GEOMETRY pdg = {0}; // disk drive geometry structure
     BOOL bResult = FALSE;      // generic results flag
     ULONGLONG DiskSize = 0;    // size of the drive, in bytes
-
     bResult = GetDriveGeometry(wszDrive,&pdg);
     if(bResult)
     {
@@ -63,12 +59,13 @@ int main()
             (ULONG)pdg.SectorsPerTrack * (ULONG)pdg.BytesPerSector;
         printf("Disk size       = %I64d (Bytes)\n                = %.2f (Gb)\n",
             DiskSize,(double)DiskSize / (1024 * 1024 * 1024));
-        cout << "MEDIA type:\t" << pdg.MediaType<< endl;
+        cout << "MEDIA type:\t" << pdg.MediaType << endl;
     }
     else
     {
         printf("GetDriveGeometry failed. Error %ld.\n",GetLastError());
     }
-
-    return ((int)bResult);
+    return 0;
+    
 }
+

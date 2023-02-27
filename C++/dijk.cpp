@@ -158,7 +158,7 @@ struct Task
         FileTo;
 };
 
-auto CreateTask(string Read,string Write)
+auto CreateTask(string Read,string Write) -> Task
 {
     Task res
     (

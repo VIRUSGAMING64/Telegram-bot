@@ -1,0 +1,76 @@
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx2")
+#include <bits/stdc++.h>
+#define ll long long
+#define F first
+#define S second
+#define N 100001
+using namespace std;
+int P[N], vis[N], dis[N];
+vector<int> t, path;
+vector<vector<int>> g(N), G(N);
+
+void topo(int x = 0, int p = -1)
+{
+    if (vis[x] == 1) return;
+    vis[x] = 1;
+    for (auto to : g[x])
+    {
+        if (to == p) continue;
+        topo(to, x);
+    }
+    t.push_back(x);
+}
+
+void dfs(int x, int p = -1)
+{
+    if (vis[x])
+        return;
+    vis[x] = 1;
+    path.push_back(x);
+    for (auto to : G[x])
+    {
+        if (to == p) continue;
+        dfs(to, x);
+    }
+}
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        a--;
+        b--;
+        g[a].push_back(b);
+        G[b].push_back(a);
+    }
+    memset(vis, 0, sizeof(vis));
+
+    for (int i = 0; i < n; i++)
+    {
+        if (vis[i])continue;
+        topo(i);    
+    }
+
+    reverse(t.begin(), t.end());
+    memset(vis, 0, sizeof(vis));
+
+    for (int i = 0; i < t.size(); i++)
+    {
+        if (vis[t[i]])
+            continue;
+        dfs(t[i]);
+        for (auto c : path)
+        {
+            cout << c + 1 << " ";
+        }
+        cout << endl;
+        path = {};
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

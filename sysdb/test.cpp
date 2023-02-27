@@ -11,8 +11,8 @@ void tester(int x,int y)
 
 vector<vector<ld>> test
 {
-  {1},
-  {2}
+  {9,99,999,9999},
+  {1,19,271,3439}
 };
 ld rate = 0.000001;
 
@@ -37,7 +37,7 @@ int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    for(int i = 0; i < 300000;i++)
+    for(int i = 0; i < 1000000;i++)
     {
         learn();
     }

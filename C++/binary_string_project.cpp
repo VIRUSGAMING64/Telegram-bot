@@ -20,6 +20,11 @@ public:
 		str = bin(r);
 		del0();
 	}
+	bin_str(int r)
+	{
+		str = bin((long long)r);
+		del0();
+	}
 	void concat(string sr)
 	{
 		str = str + sr;
@@ -446,6 +451,7 @@ bin_str operator>>(bin_str a,long long b)
 		return a;
 	}
 	a.str.resize(a.size() - b);
+	a.del0();
 	return a;
 }
 
@@ -501,6 +507,7 @@ bool operator>(bin_str a,bin_str b)
 {
 	if(a.size() > b.size())return true;
 	if(a.size() < b.size())return false;
+	if(a == b)return false;
 	for(int i = 0;i < a.size(); i++)
 	{
 		if(a.str[i] == '1' && b.str[i] == '0')
@@ -563,31 +570,51 @@ bin_str __div(bin_str a,bin_str b)
 	*/
 	if(b  > a )return 0;
 	if(b == "0")return 0;
-	bin_str l(0),r(a+1);
+	bin_str l(0),r(max(a._int(),b._int())*2);
 	bin_str res(0);
 	while(l<=r)
 	{
 		bin_str m = (l + r) >> 1;
-		res = m;
-		auto aux = (res*b);
-		if(aux == a || aux +1 == a)break; 
-		if(bin_str(aux.str) > bin_str(a.str))
+		m.del0();
+		if( (m*b) > a)
 		{
 			--m;
 			r = m;
 		}
 		else
 		{
-			++m;
-			l = m;
+			l = m + 1;
+			res = l;
 		}
 	}
+	res.del0();
 	return res;
-
 }
 
 
 int main()
 {
-		
+	int errs = 0;
+	for(int i = 1; i <= 10;i++)
+	{
+		for(int j = 1; j <=i;j++)
+		{
+			bin_str a(i),b(j);
+			auto res = __div(a,b);
+			if(res._int() != i/j)
+			{
+				errs++;
+				cout << "--------------------------------------------------------"<<endl;
+				cout << i << " " << j << " " << res._int() << " " << i / j << endl
+				<< a << " " << b << " " << res << endl;
+				cout << "--------------------------------------------------------"<<endl;
+			}
+			else
+			{
+				cerr << "OK: " << i << " " << j << endl;
+			}
+		}
+	}
+	cout << errs << endl;
+	return -1;
 }
