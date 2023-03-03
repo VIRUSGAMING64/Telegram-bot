@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <winioctl.h>
 #include <stdio.h> 
-#define wszDrive "\\\\.\\PhysicalDrive0"
+#define wszDrive "\\\\.\\c:"
 using namespace std;
 BOOL GetDriveGeometry(LPCSTR wszPath,DISK_GEOMETRY* pdg)
 {
@@ -12,7 +12,8 @@ BOOL GetDriveGeometry(LPCSTR wszPath,DISK_GEOMETRY* pdg)
     BOOL bResult = FALSE;          
     DWORD junk = 0;                
 
-    hDevice = CreateFileA(wszPath, 
+    hDevice = CreateFileA(
+        wszPath, 
         0,                
         FILE_SHARE_READ |
         FILE_SHARE_WRITE,
@@ -48,6 +49,10 @@ int main()
     BOOL bResult = FALSE;      // generic results flag
     ULONGLONG DiskSize = 0;    // size of the drive, in bytes
     bResult = GetDriveGeometry(wszDrive,&pdg);
+    DWORD len = 64;
+    LPSTR name;
+    GetVolumeNameForVolumeMountPointA("d:\\",name,MAX_PATH);
+    cout << name << endl;
     if(bResult)
     {
         printf("Drive path      = %ws\n",wszDrive);

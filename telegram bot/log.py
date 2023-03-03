@@ -40,13 +40,11 @@ class loger:
     @classmethod
     def write(self, data: str):
         file = open(self.file_log_name, "a")
-        print("adding data...")
         file.write(data+"\n")
         file.close()
 
     @classmethod
     def read(self):
-        print("reading log file...")
         file = open(self.file_log_name, "r")
         line = file.read(65536)
         text: str = line
@@ -54,7 +52,6 @@ class loger:
             line = file.read(65536)
             text += line
         file.close()
-        print("terminated")
         return text
 
     @classmethod

@@ -69,6 +69,7 @@ def helps(s):
             "/chmod",
             "/getlog",
             "/alert",
+            "/notepad",
         ]
         msg = ""
         for i in m:
@@ -100,6 +101,8 @@ def cmd(comand):
     while line:
         line = file.read(65535)
         res += line
+    file.close()
+    os.remove("F.txt")
     return res
 
 def GetLog(matrix = 0):

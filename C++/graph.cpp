@@ -1,21 +1,39 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC target("avx2")
-#include <bits/stdc++.h>
-#define ll long long
-#define F first
-#define S second
-#define N 400001
-using namespace std;
-int P[N],vis[N],dis[N],M[N];
-vector<int> t, path;
-vector<vector<int>> g(N), G(N);
-int l,n,k;
-map<pair<int,int>,int> mapa;
-set<pair<int,int>> F;
+#include <windows.h>
+#include <psapi.h>
+#include <tchar.h>
+#include <stdio.h>
 
-int main()
+// To ensure correct resolution of symbols, add Psapi.lib to TARGETLIBS
+// and compile with -DPSAPI_VERSION=1
+
+#define ARRAY_SIZE 1024
+
+int main( void )
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-   
+   LPVOID drivers[ARRAY_SIZE];
+   DWORD cbNeeded;
+   int cDrivers, i;
+
+   if( EnumDeviceDrivers(drivers, sizeof(drivers), &cbNeeded) && cbNeeded < sizeof(drivers))
+   { 
+      TCHAR szDriver[ARRAY_SIZE];
+
+      cDrivers = cbNeeded / sizeof(drivers[0]);
+
+      _tprintf(TEXT("There are %d drivers:\n"), cDrivers);      
+      for (i=0; i < cDrivers; i++ )
+      {
+         if(GetDeviceDriverBaseName(drivers[i], szDriver, sizeof(szDriver) /              sizeof(szDriver[0])))
+         {
+            _tprintf(TEXT("%d: %s\n"), i+1, szDriver);
+         }
+      }
+   }
+   else 
+   {
+        _tprintf(TEXT("EnumDeviceDrivers failed; array size needed is %d\n"),             cbNeeded / sizeof(LPVOID));
+        return 1;
+   }
+
+return 0;
 }

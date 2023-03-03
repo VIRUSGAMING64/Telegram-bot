@@ -10,17 +10,16 @@ API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 whait_for_filename = False
 change_dir = False
 CMD = 0
+ALERT = 0
+WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=128)
 log = loger("log_file.log")
 TotalUsers = log.read()
-ALERT = 0
-
-
 @bot.on_message(filters.private)
 async def on_message(client, message):
-    global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT
+    global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING
     ID = message.chat.id
     rute = os.getcwd()
     msg = message.text
@@ -32,11 +31,18 @@ async def on_message(client, message):
         find = 1
 
     if find == 0:
-        print("user: " + user + " is new")
+        print("User: " + user + " is new")
         log.write(data)
         TotalUsers = log.read()
 
     print("Message From: ", user," ",msg)
+
+    if msg == "/notepad":
+        WRITING = not WRITING
+        if(WRITING):
+            await bot.send_message(ID,"Notepad mode on...")
+        else:
+            await bot.send_message(ID,"Notepad mode off...")
 
     if msg == "/chmod":
         CMD = not CMD
@@ -48,7 +54,7 @@ async def on_message(client, message):
 
     if msg == "/alert":
         if user != "VIRUSGAMING":
-            await bot.send_message(ID, "access denied...")
+            await bot.send_message(ID, "Access denied...")
         ALERT = not ALERT
         if ALERT:
             await bot.send_message(ID, "Chat mode change to alert all users")
@@ -78,7 +84,7 @@ async def on_message(client, message):
                 ms += i
                 if len(ms) == MAX_MESSAGE_LENGTH:
                     await bot.send_message(ID, ms)
-                    Sleep(110)
+                    Sleep(500)
                     ms = ""
             await bot.send_message(ID, ms)
             # await bot.send_document(ID, "F.txt")
@@ -91,7 +97,7 @@ async def on_message(client, message):
         return
 
     if msg == "/chdir":
-        await bot.send_message(ID, "enter directory name: ")
+        await bot.send_message(ID, "Enter directory name: ")
         change_dir = True
         return
 
@@ -105,7 +111,7 @@ async def on_message(client, message):
         await bot.send_document(ID, msg)
 
     elif message.text == "/sendfile":
-        await bot.send_message(ID, "send file name")
+        await bot.send_message(ID, "Send file name")
         whait_for_filename = True
 
     else:
