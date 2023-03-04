@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <winioctl.h>
 #include <stdio.h> 
-#define wszDrive "\\\\.\\c:"
+#define wszDrive "\\\\.\\e:"
 using namespace std;
 BOOL GetDriveGeometry(LPCSTR wszPath,DISK_GEOMETRY* pdg)
 {

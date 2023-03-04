@@ -8,6 +8,10 @@ import threading as th
 import os.path as path
 from log import *
 
+async def progress(current, total):
+    s = f"{current * 100 / total:.1f}%"
+    return s
+
 
 def dir(s):
     if s == "/cd":

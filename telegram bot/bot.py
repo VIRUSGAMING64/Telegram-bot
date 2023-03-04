@@ -19,6 +19,7 @@ log = loger("log_file.log")
 TotalUsers = log.read()
 @bot.on_message(filters.private)
 async def on_message(client, message):
+
     global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING
     ID = message.chat.id
     rute = os.getcwd()
@@ -55,6 +56,7 @@ async def on_message(client, message):
     if msg == "/alert":
         if user != "VIRUSGAMING":
             await bot.send_message(ID, "Access denied...")
+            return
         ALERT = not ALERT
         if ALERT:
             await bot.send_message(ID, "Chat mode change to alert all users")
