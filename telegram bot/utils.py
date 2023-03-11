@@ -7,11 +7,10 @@ from win32net import *
 import threading as th
 import os.path as path
 from log import *
-
-async def progress(current, total):
+from pyrogram.types import Message
+async def progres(current, total):
     s = f"{current * 100 / total:.1f}%"
-    return s
-
+    print(s)
 
 def dir(s):
     if s == "/cd":

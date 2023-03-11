@@ -1,8 +1,0 @@
-Drive path      = %ws
-Cylinders       = 31130
-Tracks/cylinder = 255
-Sectors/track   = 63
-Bytes/sector    = 512
-Disk size       = 256052966400 (Bytes)
-                = 238.47 (Gb)
-MEDIA type:	12

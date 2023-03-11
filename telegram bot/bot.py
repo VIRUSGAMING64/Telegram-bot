@@ -14,12 +14,17 @@ ALERT = 0
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 # END GLOBAL VARIABLES
-bot = Client("bot", API_ID, API_HASH, workers=128)
+bot = Client("bot", API_ID, API_HASH, workers=1024)
 log = loger("log_file.log")
 TotalUsers = log.read()
+
+async def Download(message):
+    try:
+        await bot.download_media(message,progress=progres)
+    except:
+        pass
 @bot.on_message(filters.private)
 async def on_message(client, message):
-
     global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING
     ID = message.chat.id
     rute = os.getcwd()
@@ -27,7 +32,12 @@ async def on_message(client, message):
     user = message.from_user.first_name
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
+    
+    await Download(message)
 
+    if msg == None:
+        return #no text in message
+    
     if data in TotalUsers:
         find = 1
 
@@ -36,14 +46,17 @@ async def on_message(client, message):
         log.write(data)
         TotalUsers = log.read()
 
-    print("Message From: ", user," ",msg)
+    print("Message From: ", user, " ", msg)
 
     if msg == "/notepad":
         WRITING = not WRITING
-        if(WRITING):
-            await bot.send_message(ID,"Notepad mode on...")
+        if WRITING:
+            await bot.send_message(ID, "Notepad mode on...")
         else:
-            await bot.send_message(ID,"Notepad mode off...")
+            await bot.send_message(ID, "Notepad mode off...")
+    if WRITING:
+        #TODO notepad funtion
+        pass
 
     if msg == "/chmod":
         CMD = not CMD
@@ -67,7 +80,7 @@ async def on_message(client, message):
     if ALERT:
         M = GetLog(1)
         for i in range(len(M)):
-            if(M[i][1] == ID):
+            if M[i][1] == ID:
                 continue
             await bot.send_message(M[i][1], msg)
         return
