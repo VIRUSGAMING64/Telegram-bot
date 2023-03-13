@@ -2,7 +2,7 @@ import os
 from pyrogram import Client, filters
 from utils import *
 from log import *
-
+from time import *
 # GLOBAL VARIABLES
 API_ID = 29695292
 TotalUsers = []
@@ -11,21 +11,24 @@ whait_for_filename = False
 change_dir = False
 CMD = 0
 ALERT = 0
+GETING_FILENAME = 0
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=1024)
 log = loger("log_file.log")
 TotalUsers = log.read()
-
+NOTEPAD_FILENAME = None
 async def Download(message):
     try:
         await bot.download_media(message,progress=progres)
     except:
         pass
+
 @bot.on_message(filters.private)
 async def on_message(client, message):
-    global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING
+    global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING,GETING_FILENAME
+    global NOTEPAD_FILENAME
     ID = message.chat.id
     rute = os.getcwd()
     msg = message.text
@@ -51,12 +54,23 @@ async def on_message(client, message):
     if msg == "/notepad":
         WRITING = not WRITING
         if WRITING:
-            await bot.send_message(ID, "Notepad mode on...")
+            await bot.send_message(ID, "Notepad mode on...")            
+            await bot.send_message(ID, "Send filename please")
+            GETING_FILENAME = 1
         else:
             await bot.send_message(ID, "Notepad mode off...")
+        return
     if WRITING:
-        #TODO notepad funtion
-        pass
+        if(GETING_FILENAME):
+            GETING_FILENAME = 0
+            NOTEPAD_FILENAME = msg
+            file = open(msg,"w")
+            file.close()
+            return 
+        file = open(NOTEPAD_FILENAME,"a")
+        file.write(msg)
+        file.close()
+        return
 
     if msg == "/chmod":
         CMD = not CMD
@@ -99,7 +113,7 @@ async def on_message(client, message):
                 ms += i
                 if len(ms) == MAX_MESSAGE_LENGTH:
                     await bot.send_message(ID, ms)
-                    Sleep(500)
+                    sleep(0.500)
                     ms = ""
             await bot.send_message(ID, ms)
             # await bot.send_document(ID, "F.txt")

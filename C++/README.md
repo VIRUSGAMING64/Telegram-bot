@@ -23,7 +23,7 @@
 ###   note: this function use b*bpow(a,mod-2)
 
 ## How Charge DLL
-### use: `HINSTANCE LibDLL = LoadLibraryA("math.h")`
+### use: `HINSTANCE LibDLL = LoadLibraryA("math.dll")`
 
 ## How use funtions
 ### use: `typedef double(WINAPI *op)(long long a,long long b,long long mod);`

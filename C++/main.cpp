@@ -1,10 +1,11 @@
+#pragma GCC target("avx2,avx")
 #define UNICODE 1
 #define _UNICODE 1
 #include <iostream>
 #include <windows.h>
 #include <winioctl.h>
 #include <stdio.h>
-#define wszDrive "\\\\.\\g:"
+#define wszDrive "\\\\.\\d:"
 using namespace std;
 BOOL GetDriveGeometry(LPCSTR wszPath, DISK_GEOMETRY *pdg)
 {
@@ -73,5 +74,6 @@ int main()
             printf("GetDriveGeometry failed. Error %ld.\n", GetLastError());
         }
     }
+    system("pause");
     return 0;
 }

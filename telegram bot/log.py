@@ -1,6 +1,5 @@
 import os
 import os.path as path
-from win32file import *
 import threading as th
 
 
@@ -19,17 +18,8 @@ class loger:
             self.file_log_name = file
         else:
             print("creating new log file")
-            hand = CreateFile(
-                file,
-                FILE_ALL_ACCESS,
-                FILE_SHARE_WRITE | FILE_SHARE_READ,
-                None,
-                CREATE_NEW,
-                FILE_ATTRIBUTE_NORMAL,
-                None,
-            )
-            self.file_log_name = file
-            CloseHandle(hand)
+            file = open(file, 'w')
+            file.close()
 
     @classmethod
     def CreateNew(self, file):

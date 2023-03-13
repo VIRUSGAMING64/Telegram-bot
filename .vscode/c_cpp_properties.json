@@ -1,6 +1,36 @@
 {
     "configurations": [
         {
+            "name": "Win64",
+            "includePath": [
+                "c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerArgs": [
+                "-fdiagnostics-color=always",
+                "-lws2_32",
+                "-g++",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "intelliSenseMode": "gcc-x64",
+            "compileCommands": "",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "mergeConfigurations": true,
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**"
@@ -8,26 +38,25 @@
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
-            ]
-        },
-        {
-            "name": "Win64",
-            "includePath": [
-                "${workspaceFolder}/**"
+                "_UNICODE",
+                "LOCAL"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+            "compilerArgs": [
+                "-fdiagnostics-color=always",
+                "-lws2_32",
+                "-g++",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
-            "intelliSenseMode": "gcc-x64",
+            "intelliSenseMode": "gcc-x86",
             "cStandard": "c17",
             "cppStandard": "c++23",
             "mergeConfigurations": true,
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
-            }
+            },
+            "compileCommands": ""
         }
     ],
     "version": 4
