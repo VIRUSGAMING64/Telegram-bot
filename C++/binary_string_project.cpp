@@ -150,6 +150,7 @@ void operator++(bin_str& str)
 		}
 		str.str[str.str.size() - aux] = '1';
 	}
+	str.del0();
 }
 
 bin_str operator^(bin_str a,bin_str b)
@@ -173,6 +174,7 @@ bin_str operator^(bin_str a,bin_str b)
 			a.str[i] = '1';
 		}
 	}
+	a.del0();
 	return a;
 }
 
@@ -225,6 +227,7 @@ bin_str operator+(bin_str a,string y)
 	}
 	bin_str c;
 	c.str = s1;
+	c.del0();
 	return c;
 }
 
@@ -276,6 +279,7 @@ bin_str operator+(string y,bin_str a)
 	}
 	bin_str c;
 	c.str = s1;
+	c.del0();
 	return c;
 }
 
@@ -283,7 +287,6 @@ bin_str operator+(bin_str a,bin_str b)
 {
 	while(a.size() < b.size())
 	{
-
 		a.str = "0" + a.str;
 	}
 	while(b.size() < a.size())
@@ -327,17 +330,22 @@ bin_str operator+(bin_str a,bin_str b)
 	}
 	bin_str c;
 	c.str = s1;
+	c.del0();
 	return c;
 }
 bin_str operator+(bin_str str,long long n)
 {
 	bin_str a(n);
+	a.del0();
+	str.del0();
 	return str + a;
 }
 
 bin_str operator+(long long n,bin_str str)
 {
 	bin_str a(n);
+	a.del0();
+	str.del0();
 	return str + a;
 }
 
@@ -361,6 +369,7 @@ bin_str operator&(bin_str a,bin_str b)
 			a.str[i] = '0';
 		}
 	}
+	a.del0();
 	return a;
 }
 
@@ -384,6 +393,7 @@ bin_str operator|(bin_str a,bin_str b)
 			a.str[i] = '0';
 		}
 	}
+	a.del0();
 	return a;
 }
 
@@ -402,6 +412,7 @@ bin_str operator!(bin_str a)
 			a.str[i] = '1';
 		}
 	}
+	a.del0();
 	return a;
 }
 
@@ -411,10 +422,14 @@ bin_str __multbinstraux__(bin_str a,long long num)
 	if(num == 0)return 0;
 	if(num % 2 == 0){
 		bin_str t = __multbinstraux__(a,num / 2);
+		a.del0();
+		t.del0();
 		return t + t;
 	}
 	else{
 		bin_str t = __multbinstraux__(a,num / 2);
+		a.del0();
+		t.del0();
 		return t + t + a;
 	}
 }
@@ -441,6 +456,7 @@ bin_str operator<<(bin_str a,long long b)
 {
 	string us(b,'0');
 	a.str = a.str + us;
+	a.del0();
 	return a;
 }
 
@@ -464,11 +480,15 @@ bin_str __multbinstraux__(bin_str a,bin_str num)
 	{
 		num = num >> 1;
 		bin_str t = __multbinstraux__(a,num);
+		t.del0();
+		num.del0();
 		return t + t;
 	}
 	else{
 		num = num >> 1;
 		bin_str t = __multbinstraux__(a,num);
+		t.del0();
+		num.del0();
 		return t + t + a;
 	}
 }
@@ -480,6 +500,7 @@ bin_str operator*(bin_str a,long long num)
 		a.str = "0";
 		return a;
 	}
+	a.del0();
 	return __multbinstraux__(a,num);
 }
 
@@ -490,6 +511,7 @@ bin_str operator*(long long num,bin_str a)
 		a.str = "0";
 		return a;
 	}
+	a.del0();
 	return __multbinstraux__(a,num);
 }
 
@@ -500,6 +522,8 @@ bin_str operator*(bin_str num,bin_str a)
 		a.str = "0";
 		return a;
 	}
+	a.del0();
+	num.del0();
 	return __multbinstraux__(a,num);
 }
 
@@ -554,16 +578,17 @@ void operator--(bin_str &a)
 	else
 	{
 		int i = a.size()-1;
-		while(a.str[i] == '0')
+		while(a.str[i] == '0' && i >= 0)
 		{
 			a.str[i] = '1';
 			i--;
 		}
 		a.str[i] = '0';
 	}
+	a.del0();
 }
 
-bin_str __div(bin_str a,bin_str b)
+bin_str __div(bin_str a,bin_str b)/*a div b */
 {
 	/*
 	Repair function to divide 
@@ -572,19 +597,21 @@ bin_str __div(bin_str a,bin_str b)
 	if(b == "0")return 0;
 	bin_str l(0),r(max(a._int(),b._int())*2);
 	bin_str res(0);
+	a.del0();
+	b.del0();
 	while(l<=r)
 	{
 		bin_str m = (l + r) >> 1;
 		m.del0();
-		if( (m*b) > a)
+		if( (m*b) >= a)
 		{
+			res = m;
 			--m;
 			r = m;
 		}
 		else
 		{
-			l = m + 1;
-			res = l;
+			l = (m+1);
 		}
 	}
 	res.del0();
@@ -595,23 +622,16 @@ bin_str __div(bin_str a,bin_str b)
 int main()
 {
 	int errs = 0;
-	for(int i = 1; i <= 10;i++)
+	int n;
+	cin >> n;
+	for(int i = 1; i <= n;i++)
 	{
-		for(int j = 1; j <=i;j++)
+		for(int j = 1; j <= i;j++)
 		{
-			bin_str a(i),b(j);
-			auto res = __div(a,b);
-			if(res._int() != i/j)
+			if(i/j != __div(bin_str(i),bin_str(j))._int())
 			{
+				cerr << "Error: " << i << " " << j << endl;
 				errs++;
-				cout << "--------------------------------------------------------"<<endl;
-				cout << i << " " << j << " " << res._int() << " " << i / j << endl
-				<< a << " " << b << " " << res << endl;
-				cout << "--------------------------------------------------------"<<endl;
-			}
-			else
-			{
-				cerr << "OK: " << i << " " << j << endl;
 			}
 		}
 	}

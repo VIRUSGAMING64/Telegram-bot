@@ -7,18 +7,19 @@ from time import *
 API_ID = 29695292
 TotalUsers = []
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
-whait_for_filename = False
-change_dir = False
+WAITING_FOR_FILENAME = 0
+CHANGE_DIR = 0
+NOTEPAD_FILENAME = 0
 CMD = 0
 ALERT = 0
 GETING_FILENAME = 0
+ACTUAL_MESSAGE = ""
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=1024)
 log = loger("log_file.log")
-TotalUsers = log.read()
-NOTEPAD_FILENAME = None
+TotalUsers = log.read() 
 async def Download(message):
     try:
         await bot.download_media(message,progress=progres)
@@ -27,8 +28,9 @@ async def Download(message):
 
 @bot.on_message(filters.private)
 async def on_message(client, message):
-    global whait_for_filename, log, change_dir, CMD, TotalUsers, ALERT, WRITING,GETING_FILENAME
-    global NOTEPAD_FILENAME
+    global WAITING_FOR_FILENAME, log, CHANGE_DIR, CMD, TotalUsers, ALERT, WRITING,GETING_FILENAME
+    global NOTEPAD_FILENAME,ACTUAL_MESSAGE
+    ACTUAL_MESSAGE = message
     ID = message.chat.id
     rute = os.getcwd()
     msg = message.text
@@ -106,7 +108,7 @@ async def on_message(client, message):
         return
 
     if CMD:
-        msg = commando(msg, CMD)
+        msg = commandos(msg, CMD)
         if len(msg) >= MAX_MESSAGE_LENGTH:
             ms = ""
             for i in msg:
@@ -127,24 +129,24 @@ async def on_message(client, message):
 
     if msg == "/chdir":
         await bot.send_message(ID, "Enter directory name: ")
-        change_dir = True
+        CHANGE_DIR = True
         return
 
-    elif change_dir == True:
-        change_dir = False
+    elif CHANGE_DIR == True:
+        CHANGE_DIR = False
         msg = chdir(msg)
         await bot.send_message(ID, msg)
 
-    elif whait_for_filename == True:
-        whait_for_filename = False
+    elif WAITING_FOR_FILENAME == True:
+        WAITING_FOR_FILENAME = False
         await bot.send_document(ID, msg)
 
     elif message.text == "/sendfile":
         await bot.send_message(ID, "Send file name")
-        whait_for_filename = True
+        WAITING_FOR_FILENAME = True
 
     else:
-        cmd = commando(msg, 0)
+        cmd = commandos(msg, 0)
 
     try:
         await bot.send_message(ID, cmd)
@@ -160,6 +162,8 @@ async def on_edited_message(client, message):
 @bot.on_deleted_messages(filters.private)
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
+
+
 
 
 bot.run()

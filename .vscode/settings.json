@@ -91,7 +91,8 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "ccomplex": "cpp"
+        "ccomplex": "cpp",
+        "*.rh": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "python.testing.pytestArgs": [
@@ -102,9 +103,14 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        ".",
+        "./telegram bot",
         "-p",
-        "*test.py"
+        "test*.py"
     ],
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "hts.path.correctSolution": "C:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\correct.cpp",
+    "hts.path.wrongSolution": "C:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\dp2.cpp",
+    "hts.path.generatorFile": "C:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\g.cpp",
+    "hts.path.checker": "nyesno.cpp",
+    "hts.generator.argument": ""
 }

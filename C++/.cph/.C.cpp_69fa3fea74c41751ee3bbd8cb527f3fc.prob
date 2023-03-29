@@ -1,1 +1,0 @@
-{"name":"Local: C","url":"c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\C++\\C.cpp","tests":[{"id":1678464779487,"input":"2\n1\n2\n","output":""},{"id":1678464838563,"input":"2\n2\n2","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\C++\\C.cpp","group":"local","local":true}

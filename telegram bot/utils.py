@@ -3,6 +3,7 @@ import threading as th
 import os.path as path
 from log import *
 from pyrogram.types import Message
+
 async def progres(current, total):
     s = f"{current * 100 / total:.1f}%"
     print(s)
@@ -125,7 +126,7 @@ def GetLog(matrix = 0):
     return dato
 
 
-def commando(s, CMD=False):
+def commandos(s, CMD=False):
     x = ""
     if CMD:
         x = cmd(s)

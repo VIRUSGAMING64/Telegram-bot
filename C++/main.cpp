@@ -74,6 +74,5 @@ int main()
             printf("GetDriveGeometry failed. Error %ld.\n", GetLastError());
         }
     }
-    system("pause");
     return 0;
 }
