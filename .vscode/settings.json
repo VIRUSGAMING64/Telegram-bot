@@ -103,9 +103,9 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./telegram bot",
+        ".",
         "-p",
-        "test*.py"
+        "*test.py"
     ],
     "python.formatting.provider": "black",
     "hts.path.correctSolution": "C:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\correct.cpp",

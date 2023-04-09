@@ -3,7 +3,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe compilar archivo activo",
-            "command": "D:\\SOFTWARE\\mingw64\\bin\\g++.exe",
+            "command": "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",

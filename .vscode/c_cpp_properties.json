@@ -3,7 +3,8 @@
         {
             "name": "Win64",
             "includePath": [
-                "c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64/**"
+                "c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64/**",
+                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\"
             ],
             "defines": [
                 "_DEBUG",
@@ -28,7 +29,8 @@
                     "${workspaceFolder}/**"
                 ],
                 "limitSymbolsToIncludedHeaders": true
-            }
+            },
+            "compilerPath": "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\bin\\g++.exe"
         },
         {
             "name": "Win32",

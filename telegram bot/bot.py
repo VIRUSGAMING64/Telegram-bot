@@ -30,6 +30,7 @@ async def Download(message):
 async def on_message(client, message):
     global WAITING_FOR_FILENAME, log, CHANGE_DIR, CMD, TotalUsers, ALERT, WRITING,GETING_FILENAME
     global NOTEPAD_FILENAME,ACTUAL_MESSAGE
+    cmd = ""
     ACTUAL_MESSAGE = message
     ID = message.chat.id
     rute = os.getcwd()
@@ -162,8 +163,5 @@ async def on_edited_message(client, message):
 @bot.on_deleted_messages(filters.private)
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
-
-
-
 
 bot.run()

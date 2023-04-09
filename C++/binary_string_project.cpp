@@ -621,20 +621,5 @@ bin_str __div(bin_str a,bin_str b)/*a div b */
 
 int main()
 {
-	int errs = 0;
-	int n;
-	cin >> n;
-	for(int i = 1; i <= n;i++)
-	{
-		for(int j = 1; j <= i;j++)
-		{
-			if(i/j != __div(bin_str(i),bin_str(j))._int())
-			{
-				cerr << "Error: " << i << " " << j << endl;
-				errs++;
-			}
-		}
-	}
-	cout << errs << endl;
-	return -1;
+	
 }

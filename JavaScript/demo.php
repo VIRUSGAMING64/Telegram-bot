@@ -7,17 +7,21 @@
             color:#0000FF;
             background-color: red;           
         }
+        #but{
+            color:#000000;
+            background-color: black;    
+        }
         #cir{
-            background-color: white;
+            background-color: black;
             width: 30px;
             height: 30px;
             border-radius: 100%;
-            text-align: center;
+            
             line-height: 30px;
             font-size: 10px;  
             position: relative;
             left: 10px;
-            transition:  all 1s ease-in-out;
+            transition:  all 1s linear;
             top: 10px;
         }
     </style>
@@ -29,8 +33,8 @@
     <title>Document</title>
 </head>
 
-<body bgcolor = "#000000">
-
+<body bgcolor = "#FFFFFF">
+    <button id = "but">yisell</button>
 </body>
 <script>
 
