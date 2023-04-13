@@ -1,1 +1,0 @@
-{"name":"Local: d2","url":"c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\C++\\d2.cpp","tests":[{"id":1680104921198,"input":"3\n7 3\nfaberty\n7 5\nbbaaaba\n4 4\nzxwy","output":"abferty\naababba\nwxyz"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64\\C++\\d2.cpp","group":"local","local":true}
