@@ -11,10 +11,10 @@ public:
     SOCKADDR_IN serverAddr, clientAddr;
     char buffer[1024];
     Server()
-    {
+    {   
         WSAStartup(MAKEWORD(2, 0), &WSAData);
         server = socket(AF_INET, SOCK_STREAM, 0);
-
+        
         serverAddr.sin_addr.s_addr = INADDR_ANY;
         serverAddr.sin_family = AF_INET;
         serverAddr.sin_port = htons(5555);

@@ -11,6 +11,8 @@
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-lws2_32",
+                "-fopenacc",
+                "-fopenmp",
             ],
             "options": {
                 "cwd": "${fileDirname}"
