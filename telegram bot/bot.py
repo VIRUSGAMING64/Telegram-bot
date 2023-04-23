@@ -5,8 +5,8 @@ from log import *
 from time import *
 # GLOBAL VARIABLES
 API_ID = 29695292
-TotalUsers = []
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
+TotalUsers = []
 WAITING_FOR_FILENAME = 0
 CHANGE_DIR = 0
 NOTEPAD_FILENAME = 0

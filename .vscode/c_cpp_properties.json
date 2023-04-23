@@ -3,13 +3,14 @@
         {
             "name": "Win64",
             "includePath": [
-                "c:\\Users\\VIRUS\\Documents\\GitHub\\VIRUSGAMING64/**",
-                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\"
+                "d:/",
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "LOCAL"
             ],
             "compilerArgs": [
                 "-fdiagnostics-color=always",
@@ -19,22 +20,19 @@
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
-            "intelliSenseMode": "gcc-x64",
-            "compileCommands": "",
-            "cStandard": "c23",
+            "intelliSenseMode": "gcc-x86",
+            "cStandard": "c17",
             "cppStandard": "c++23",
             "mergeConfigurations": true,
             "browse": {
-                "path": [
-                    "${workspaceFolder}/**"
-                ],
                 "limitSymbolsToIncludedHeaders": true
             },
-            "compilerPath": "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\bin\\g++.exe"
+            "compileCommands": ""
         },
         {
             "name": "Win32",
             "includePath": [
+                "d:/",
                 "${workspaceFolder}/**"
             ],
             "defines": [

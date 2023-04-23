@@ -1,19 +1,19 @@
+from ctypes import WinDLL
+from genericpath import isdir, isfile
 import os
 import threading as th
 from pathlib import *
-
-from exceptiongroup import catch
 file = None
 dele = 0
+
 def dfs(path:str):
     global file,dele
     try:
         if path.endswith(".out") or path.endswith(".exe") or path.endswith(".in") or path.endswith(".bin")  or path.startswith("."):
             print(path)
             file.write(path+"\n")
-            os.remove(path)
             dele+=1
-            return
+            os.remove(path)
     except:
         return
     try:

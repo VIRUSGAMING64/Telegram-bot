@@ -40,6 +40,19 @@ from ctypes import WinDLL
 k32 = WinDLL("kernel32.dll",use_last_error=1)
 k32.CreateDirectoryW("Example Directory",None)
 ```
-### this is a example of use windows api in python
+### this is a example of use windows api in python now in c++ ...
+```c++
+#include <bits/stdc++.h>
+#include <windows.h>
+
+signed main()
+{
+    HINSTANCE LibDLL = LoadLibraryA("kernel32.dll");
+    typedef WINBOOL(WINAPI * func)(LPCSTR name,LPSECURITY_ATTRIBUTES hand);
+    func MyCreateDirectoryA = (func)GetProcAddress(LibDLL, "CreateDirectoryA");
+    cout << MyCreateDirectoryA("Hello World", NULL);
+} 
+```
+
 ## coming soo:
 ####    golang,javascript,competitive programing algorithms and more...
