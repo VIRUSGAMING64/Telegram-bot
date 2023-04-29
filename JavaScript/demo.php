@@ -16,7 +16,6 @@
             width: 30px;
             height: 30px;
             border-radius: 100%;
-            
             line-height: 30px;
             font-size: 10px;  
             position: relative;
@@ -60,6 +59,6 @@
 </script>
 
 <?php
-
+    echo "hola mundo XD";
 ?>    
 </html>

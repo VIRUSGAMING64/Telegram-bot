@@ -5,6 +5,8 @@
             "label": "C/C++: g++.exe compilar archivo activo",
             "command": "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\bin\\g++.exe",
             "args": [
+                "-m128bit-long-double",
+                "-mhard-float",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
