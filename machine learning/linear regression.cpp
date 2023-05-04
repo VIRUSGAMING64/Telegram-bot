@@ -21,9 +21,10 @@ using namespace __gnu_pbds;
 #define THREAD_NUM 32
 #define ITERS 10000000
 vector<int> grade = {1};
-vector<fx> va = {0}, y = {2, 4, 6, 8, 10, 12, 14, 20, 2000000};
+// F(x) = xxx+xx
+vector<fx> va = {0,0}, y = {2, 12, 36, 80, 150,252, 392, 1100};
 vector<vector<fx>> x = {
-    {1, 2, 3, 4, 5, 6, 7, 10, 1000000}};
+    {1, 2, 3, 4, 5, 6, 7, 10}};
 
 ll lg = 0;
 fx B = 0;
@@ -125,4 +126,15 @@ signed main()
     }
     cout << "A: " << B << endl;
     eval();
+    cout << "diga x: ";
+    fx dx,res = 0;
+    cin >> dx;
+    for (int i = 0; i < va.size();i++){
+        fx ans = 1;
+        for (int j = 0; j < grade[i]; j++){
+            ans *= dx;
+        }
+        res +=  (ans * va[i]);
+    }
+    cout << res << endl;
 }
