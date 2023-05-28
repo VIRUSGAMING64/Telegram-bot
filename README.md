@@ -2,7 +2,7 @@
 ## Repository of useful functions and scripts in C++ and Python
 ### 1- Updates all week 
 ### 2 - to use the telegram bot use the command: 
-```bash
+```python
 python -m pip install pyrogram
 ```
 ## Telegram Bot Example:

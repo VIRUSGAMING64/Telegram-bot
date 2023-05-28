@@ -32,8 +32,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "d:/",
-                "${workspaceFolder}/**"
+                "C:\\Users\\VIRUS\\Documents\\GitHub\\**",
+                "${workspaceFolder}/**",
+                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\**"
             ],
             "defines": [
                 "_DEBUG",
@@ -49,14 +50,18 @@
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
-            "intelliSenseMode": "gcc-x86",
-            "cStandard": "c17",
+            "intelliSenseMode": "gcc-x64",
+            "cStandard": "c23",
             "cppStandard": "c++23",
             "mergeConfigurations": true,
             "browse": {
-                "limitSymbolsToIncludedHeaders": true
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [],
+                "databaseFilename": "D:\\VIRUSGAMING\\databases\\DATABASE.DB"
             },
-            "compileCommands": ""
+            "compileCommands": "",
+            "compilerPath": "D:/SOFTWARE/codeblocks-20.03mingw-nosetup/MinGW/bin/gcc.exe",
+            "forcedInclude": []
         }
     ],
     "version": 4

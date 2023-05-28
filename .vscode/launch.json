@@ -2,6 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "VIRUSGAMING64_91def8e6"
+        },
+        {
             "name": "C/C++: g++.exe Compilar y depurar el archivo activo",
             "type": "cppdbg",
             "request": "launch",
