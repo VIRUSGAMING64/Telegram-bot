@@ -36,62 +36,22 @@ typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
+void solve()
+{
+    
+}
+
 signed main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    ll t;
+    ll t = 1;
     cin >> t;
-    for (ll i = 0; i < t; i++)
+    while (t--)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        vector<ll> a(n + 1);
-        for (ll i = 0; i < n; i++)
-            if (s[i] == '(')
-                a[i + 1] = a[i] + 1;
-            else
-                a[i + 1] = a[i] - 1;
-
-        if (a.back() != 0)
-            cout << -1 << endl;
-        else
-        {
-            if (*min_element(a.begin(), a.end()) == 0 || *max_element(a.begin(), a.end()) == 0)
-            {
-                cout << 1 << endl;
-                for (ll j = 0; j < n; j++)
-                {
-                    if (j)
-                        cout << " ";
-                    cout << 1;
-                }
-                cout << endl;
-            }
-            else
-            {
-                cout << 2 << endl;
-                vector<ll> ans;
-                ll l = 0;
-                while (l < n)
-                {
-                    ll w = (s[l] == '(' ? 1 : 2);
-                    do
-                    {
-                        l++;
-                        ans.push_back(w);
-                    } while (a[l] != 0);
-                }
-                for (ll j = 0; j < n; j++)
-                {
-                    if (j)
-                        cout << " ";
-                    cout << ans[j];
-                }
-                cout << endl;
-            }
-        }
+        solve();
     }
 }
+
+/*
+ */
