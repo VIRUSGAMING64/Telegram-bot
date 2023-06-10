@@ -1,4 +1,3 @@
-#pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -30,7 +29,7 @@ using namespace std;
 using namespace chrono;
 using namespace __gnu_pbds;
 #define THREAD_NUM 32
-#define MOD 1000000007
+#define MOD 1000000000
 const ll INF = 1e18, MAXN = 1e6;
 typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
@@ -38,15 +37,14 @@ typedef tree<ll, null_type, less_equal<ll>,
 
 void solve()
 {
-    
 }
 
 signed main()
 {
+
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     ll t = 1;
-    cin >> t;
     while (t--)
     {
         solve();

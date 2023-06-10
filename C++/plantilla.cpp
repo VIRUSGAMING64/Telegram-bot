@@ -273,7 +273,15 @@ ofstream out(strconcat(__FILE__,".out").c_str());
 
 inline void core1()
 {
-    
+    for (int i = 0; i < 1000; i++)
+    {
+
+        for (int i = 0; i < 1000; i++)
+        {
+            out << 1000000000 << " ";
+        }
+        out << endl;
+    }
 }
 
 inline void core2()
