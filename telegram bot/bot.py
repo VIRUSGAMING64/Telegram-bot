@@ -4,6 +4,7 @@ from utils import *
 from log import *
 from time import *
 # GLOBAL VARIABLES
+
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 TotalUsers = []
@@ -16,8 +17,9 @@ GETING_FILENAME = 0
 ACTUAL_MESSAGE = ""
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
+WORKERS = 1024
 # END GLOBAL VARIABLES
-bot = Client("bot", API_ID, API_HASH, workers=1024)
+bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
 log = loger("log_file.log")
 TotalUsers = log.read() 
 

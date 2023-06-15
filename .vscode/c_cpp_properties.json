@@ -1,67 +1,22 @@
 {
     "configurations": [
         {
-            "name": "Win64",
-            "includePath": [
-                "d:/",
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE",
-                "LOCAL"
-            ],
-            "compilerArgs": [
-                "-fdiagnostics-color=always",
-                "-lws2_32",
-                "-g++",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "intelliSenseMode": "gcc-x86",
-            "cStandard": "c17",
-            "cppStandard": "c++23",
-            "mergeConfigurations": true,
-            "browse": {
-                "limitSymbolsToIncludedHeaders": true
-            },
-            "compileCommands": ""
-        },
-        {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\VIRUS\\Documents\\GitHub\\**",
                 "${workspaceFolder}/**",
-                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\**"
+                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include\\**",
+                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\x86_64-w64-mingw32\\include\\**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "LOCAL"
+                "LOCAL",
+                "_LOCAL"
             ],
-            "compilerArgs": [
-                "-fdiagnostics-color=always",
-                "-lws2_32",
-                "-g++",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "intelliSenseMode": "gcc-x64",
-            "cStandard": "c23",
-            "cppStandard": "c++23",
-            "mergeConfigurations": true,
-            "browse": {
-                "limitSymbolsToIncludedHeaders": true,
-                "path": [],
-                "databaseFilename": "D:\\VIRUSGAMING\\databases\\DATABASE.DB"
-            },
-            "compileCommands": "",
-            "compilerPath": "D:/SOFTWARE/codeblocks-20.03mingw-nosetup/MinGW/bin/gcc.exe",
-            "forcedInclude": []
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4

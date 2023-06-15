@@ -27,7 +27,6 @@ vector<int> dijsktra(vector<vector<pair<int, int>>> g /*{[a].{b,w}}*/, int x);
 #define ll2 atomic<ll>
 #define ld2 atomic<ld>
 #define db2 atomic<db>
-#define endl "\n"
 #define pb push_back
 #define vi vector<int>
 #define vvi vector<vi>
