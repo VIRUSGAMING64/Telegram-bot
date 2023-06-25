@@ -17,7 +17,8 @@ GETING_FILENAME = 0
 ACTUAL_MESSAGE = ""
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
-WORKERS = 1024
+WORKERS = 16
+ASKING = 0
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
 log = loger("log_file.log")
@@ -32,7 +33,7 @@ async def Download(message):
 @bot.on_message(filters.private)
 async def on_message(client, message):
     global WAITING_FOR_FILENAME, log, CHANGE_DIR, CMD, TotalUsers, ALERT, WRITING,GETING_FILENAME
-    global NOTEPAD_FILENAME,ACTUAL_MESSAGE
+    global ASKING,NOTEPAD_FILENAME,ACTUAL_MESSAGE
     cmd = ""
     ACTUAL_MESSAGE = message
     ID = message.chat.id
@@ -41,8 +42,8 @@ async def on_message(client, message):
     user = message.from_user.first_name
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
-    
     await Download(message)
+   
 
     if msg == None:
         return #no text in message
@@ -56,7 +57,20 @@ async def on_message(client, message):
         TotalUsers = log.read()
 
     print("Message From: ", user, " ", msg)
-
+    
+    if msg == "/end_ask":
+        ASKING = 0
+        await bot.send_message(ID,"bing chat is disabled...")
+        return
+    if(ASKING == 1):
+        await bot.send_message(ID,"wait please...")
+        await bot.send_message(ID,ai_ask(msg))
+        return
+    if msg == "/ask":
+        ASKING = 1 
+        await bot.send_message(ID,"bing chat is enabled...")
+        return 
+    
     if msg == "/notepad":
         WRITING = not WRITING
         if WRITING:

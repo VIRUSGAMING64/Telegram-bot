@@ -1,6 +1,7 @@
 import os
 import threading as th
 import os.path as path
+from bing import *
 from log import *
 from pyrogram.types import Message
 
@@ -69,6 +70,8 @@ def helps(s):
             "/getlog",
             "/alert",
             "/notepad",
+            "/ask",
+            "/ask_end"
         ]
         msg = ""
         for i in m:
@@ -148,5 +151,12 @@ def CheckSecure():
     else:
         return False
 
+
+
+def ai_ask(msg):
+    ai = BingAI()
+    ai.new_conversation()
+    resp = ai.ask(msg)
+    return resp
 
 print('module loaded: "utils"')
