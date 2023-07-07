@@ -3,6 +3,8 @@
         "chrono": "cpp",
         "complex": "cpp",
         "string_view": "cpp",
-        "ostream": "cpp"
-    }
+        "ostream": "cpp",
+        "iostream": "cpp"
+    },
+    "cph.general.onceMaintainerMessage": false
 }

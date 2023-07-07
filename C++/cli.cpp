@@ -2,9 +2,8 @@
 #include <winsock2.h>
 
 using namespace std;
-
 class Client
-{
+{ 
 public:
     WSADATA WSAData;
     SOCKET server;

@@ -1,0 +1,14 @@
+help - send help
+secure_on - only VIRUSGAMING use this bot
+secure_off - all users use the bot 
+sendfile - send file to telegram 
+cd - get path
+dir - get directory
+chdir - change directory
+system_info - host information
+chmod - cmd mode
+getlog - get users in this bot
+alert - alert for all users
+notepad - notepad mode
+ask - start bing chat mode
+ask_end - finish bing chat mode
