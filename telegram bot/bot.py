@@ -44,18 +44,8 @@ async def on_message(client, message):
     user = message.from_user.first_name
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
-
-    if((not str(msg).endswith('@rogersvirus_bot'))):
-        if(str(chat_type).endswith("SUPERGROUP")):
-            return
-    if(str(msg).endswith('@rogersvirus_bot')):
-        amsg = msg
-        msg = ""
-        for i in range(len(amsg)-len('@rogersvirus_bot')):
-            msg+=amsg[i]
+    
     await Download(message)
-   
-
 
     if msg == None:
         return #no text in message
