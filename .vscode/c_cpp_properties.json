@@ -3,9 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\lib\\gcc\\x86_64-w64-mingw32\\8.1.0\\include\\**",
-                "D:\\SOFTWARE\\codeblocks-20.03mingw-nosetup\\MinGW\\x86_64-w64-mingw32\\include\\**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
