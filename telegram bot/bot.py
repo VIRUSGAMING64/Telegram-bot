@@ -1,4 +1,9 @@
 from pyrogram import Client, filters
+import os
+import os.path as path
+from pyrogram.types import Message
+from utils import *
+from time import *
 
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
@@ -11,21 +16,10 @@ async def on_message(client, message):
 
 bot.run()
 """
-from email import message
-import os
-from pyrogram import Client, filters
-from utils import *
-from log import *
-from time import *
 # GLOBAL VARIABLES
-
-API_ID = 29695292
-API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 TotalUsers = []
 WAITING_FOR_FILENAME = 0
 CHANGE_DIR = 0
-
-
 NOTEPAD_FILENAME = 0
 CMD = 0
 ALERT = 0
@@ -39,6 +33,88 @@ ASKING = 0
 bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
 log = loger("log_file.log")
 TotalUsers = log.read() 
+
+
+
+
+class loger:
+    file_log_name = None
+    file_size = None
+
+    @classmethod
+    def __init__(self):
+        print("loger created empty")
+
+    @classmethod
+    def __init__(self, file):
+        if path.exists(file):
+            print("loaded exists log file")
+            self.file_log_name = file
+        else:
+            print("creating new log file")
+            file = open(file, 'w')
+            file.close()
+
+    @classmethod
+    def CreateNew(self, file):
+        new = loger(file)
+        self = new
+        return new
+
+    @classmethod
+    def write(self, data: str):
+        file = open(self.file_log_name, "a")
+        file.write(data+"\n")
+        file.close()
+
+    @classmethod
+    def read(self):
+        file = open(self.file_log_name, "r")
+        line = file.read(65536)
+        text: str = line
+        while line:
+            line = file.read(65536)
+            text += line
+        file.close()
+        return text
+
+    @classmethod
+    def decode(self, text):
+        list = []
+        str = ""
+        for i in range(len(text)):
+            if text[i] == "[":
+                str = ""
+                continue
+            if text[i] == "]":
+                list.append(str)
+                str = ""
+                continue
+            str += text[i]
+        return list
+
+    def decode_list(self, lista):
+        result = []
+        for data in lista:
+            str = ""
+            res = []
+            for i in range(len(data)):
+                if data[i] == ",":
+                    res.append(str)
+                    str = ""
+                    continue
+                str += data[i]
+            res.append(str)
+            result.append(res)
+        return result
+
+
+
+
+
+
+
+
 
 async def Download(message):
     try:

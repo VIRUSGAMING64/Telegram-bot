@@ -1,9 +1,7 @@
 import os
 import threading as th
 import os.path as path
-from bing import *
-from log import *
-from pyrogram.types import Message
+
 
 async def progres(current, total):
     s = f"{current * 100 / total:.1f}%"
