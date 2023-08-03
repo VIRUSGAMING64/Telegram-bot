@@ -20,6 +20,7 @@ WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 WORKERS = 16
 ASKING = 0
+DOWNLOADER = ""
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
 
@@ -97,11 +98,21 @@ class loger:
 log = loger("log_file.log")
 TotalUsers = log.read() 
 
-async def Download(message):
+async def progres(current, total):
+    s = f"{current * 100 / total:.1f}%"
+    print(s)
+    await bot.send_message(DOWNLOADER,str(s))
+
+async def Download(message,user):
     try:
+        if(DOWNLOADER != ""):
+            await bot.send_message(user,"user: "+DOWNLADER + " downloading file...")
+        DOWNLOADER = user
         await bot.download_media(message,progress=progres)
     except:
         pass
+    finally:
+        DOWNLOADER = ""
 
 @bot.on_message()
 async def on_message(client, message):
@@ -117,7 +128,7 @@ async def on_message(client, message):
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
     
-    await Download(message)
+    await Download(message,user)
 
     if msg == None:
         return #no text in message

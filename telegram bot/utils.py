@@ -106,22 +106,6 @@ def dirs(s):
         return ""
 
 
-def sysinfo(s):
-    if s == "/system_info":
-        try:
-            os.system("systeminfo > m")
-            f = open("m")
-            line = f.read(65536)
-            msg = line
-            while line:
-                line = f.read(65536)
-                msg += line
-            return msg
-        except:
-            return "access denied"
-    else:
-        return ""
-
 
 def helps(s):
     if s == "/help":
@@ -133,13 +117,10 @@ def helps(s):
             "/cd",
             "/dir",
             "/chdir",
-            "/system_info",
             "/chmod",
             "/getlog",
             "/alert",
             "/notepad",
-            "/ask",
-            "/ask_end"
         ]
         msg = ""
         for i in m:
@@ -206,7 +187,6 @@ def commandos(s, CMD=False):
         x += helps(s)
         x += dir(s)
         x += dirs(s)
-        x += sysinfo(s)
     if x == "":
         x = "no commands..."
     return x
@@ -218,13 +198,3 @@ def CheckSecure():
         return True
     else:
         return False
-
-
-
-def ai_ask(msg):
-    ai = BingAI()
-    ai.new_conversation()
-    resp = ai.ask(msg)
-    return resp
-
-print('module loaded: "utils"')

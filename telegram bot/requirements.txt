@@ -2,3 +2,4 @@ pyrogram
 websocket-client
 flask
 tgcrypto
+uvloop
