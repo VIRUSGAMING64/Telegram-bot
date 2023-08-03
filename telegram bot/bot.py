@@ -1,3 +1,16 @@
+from pyrogram import Client, filters
+
+API_ID = 29695292
+API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
+bot = Client("bot", API_ID, API_HASH)
+
+@bot.on_message(filters.private)
+async def on_message(client, message):
+    await message.reply("Hello from Pyrogram!")
+
+
+bot.run()
+"""
 from email import message
 import os
 from pyrogram import Client, filters
@@ -186,3 +199,4 @@ async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
 
 bot.run()
+"""
