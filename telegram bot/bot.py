@@ -22,11 +22,6 @@ WORKERS = 16
 ASKING = 0
 # END GLOBAL VARIABLES
 bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
-log = loger("log_file.log")
-TotalUsers = log.read() 
-
-
-
 
 class loger:
     file_log_name = None
@@ -98,7 +93,10 @@ class loger:
             res.append(str)
             result.append(res)
         return result
-        
+
+log = loger("log_file.log")
+TotalUsers = log.read() 
+
 async def Download(message):
     try:
         await bot.download_media(message,progress=progres)
