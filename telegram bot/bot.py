@@ -101,12 +101,13 @@ TotalUsers = log.read()
 async def progres(current, total):
     s = f"{current * 100 / total:.1f}%"
     print(s)
-    await bot.send_message(DOWNLOADER,str(s))
+    await bot.send_message(DOWNLOADER,str(s))   
 
 async def Download(message,user):
     try:
         if(DOWNLOADER != ""):
             await bot.send_message(user,"user: "+DOWNLADER + " downloading file...")
+            return
         DOWNLOADER = user
         await bot.download_media(message,progress=progres)
     except:
