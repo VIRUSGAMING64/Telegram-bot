@@ -31,12 +31,17 @@ async def progres(current, total):
     global LAST_MESSAGE,DOWNLOADER
     try:
         s = f"{current * 100 / total:.1f}%"
-        print(s)
+        porcent = current * 100 / total
+        MSG = str(str("* " * int(int(porcent) // 10)) + str(". " * (10 - (int(porcent) // 10))) + "\n" + str(s))
+        print(MSG)
         if(LAST_MESSAGE == ""):
-            LAST_MESSAGE = await bot.send_message(DOWNLOADER,str(s))   
+            try:
+                LAST_MESSAGE = await bot.send_message(DOWNLOADER,MSG)   
+            except Exception as e:
+                print('error on first msg: ',e)
         else:
             try:
-                await bot.edit_message_text(chat_id=LAST_MESSAGE.chat.id,message_id=LAST_MESSAGE.id,text=str(s))
+                await bot.edit_message_text(chat_id=LAST_MESSAGE.chat.id,message_id=LAST_MESSAGE.id,text=MSG)
             except:
                 print("error on edit")
     except:
@@ -46,16 +51,18 @@ async def Download(message,user_id):
     global DOWNLOADER
     try:
         if(DOWNLOADER != ""):
-            await bot.send_message(user_id,"current download please wait")
             return
     except:
         print("error on check current download")
     try:
         DOWNLOADER = user_id
         await bot.download_media(message,progress=progres)
-    except:    
+    except Exception as e:
         DOWNLOADER = ""
-        pass
+        if str(e) == "This message doesn't contain any downloadable media":
+            DOWNLOADER = ""
+        else: 
+            print(e)
     finally:
         LAST_MESSAGE = ""
         DOWNLOADER = ""
