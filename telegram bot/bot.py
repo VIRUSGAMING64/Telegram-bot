@@ -181,7 +181,9 @@ async def on_message(client, message):
 
     elif WAITING_FOR_FILENAME == True:
         WAITING_FOR_FILENAME = False
+        TEMP = await bot.send_message(ID,"uploading to telegram...")
         await bot.send_document(ID, msg)
+        await bot.delete_messages(TEMP.chat.id,TEMP.id)
 
     elif message.text == "/sendfile":
         await bot.send_message(ID, "Send file name")
