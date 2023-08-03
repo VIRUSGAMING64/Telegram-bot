@@ -1,3 +1,4 @@
+#pragma GCC Optimize("Ofast")
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -7,20 +8,20 @@ using namespace __gnu_pbds;
 #endif
 #ifndef FAST_COMPILE
 #ifdef LOCAL
-#include "debug/debug.h"
-#include "nums/floatx.hpp"
-#include "ttmath/ttmath.h"
-#include "json/json.hpp"
+#include "includes/debug/debug.h"
+#include "includes/nums/floatx.hpp"
+#include "includes/ttmath/ttmath.h"
+#include "includes/json/json.hpp"
 #include <omp.h>
 #include <unistd.h>
+#include "includes/win/api.hpp"
 #include <windows.h>
+using namespace literals;
 using namespace flx;
 using namespace ttmath;
 using namespace nlohmann;
-using namespace literals;
 using namespace std;
 using namespace chrono;
-#include "win/api.hpp"
 #endif
 #endif
 #ifdef FAST_COMPILE
@@ -33,6 +34,8 @@ using namespace std;
 #endif
 #define pb push_back
 #define ll long long
+#define ull unsigned ll
+#define all(x) x.begin(), x.end()
 #define ld long double
 #define fx ld // antes estaba otra cosa
 #define ull unsigned ll
@@ -40,46 +43,79 @@ using namespace std;
 #define F first
 #define THREAD_NUM 32
 #define MOD 1000000007
-#define MOD2 998244353
 const ll INF = 1e18, MAXN = 1e6;
 typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
-ll bpow(ll a, ll e, ll mod)
+class sol
 {
-    if (e == 0)
-        return 1;
-    if (e & 1)
+public:
+    vector<int> a;
+    vector<vector<int>> st;
+    int rec(int n, int l, int r)
     {
-        return (a % mod * bpow(a, e - 1,MOD2) % mod) % mod;
-    }
-    auto t = bpow(a, e / 2, mod);
-    return (t % mod * t % mod) % mod;
-}
+        if (l == r)
+        {
+            st[n] = {a[l]};
+            return 0;
+        };
+        int m = (l + r) / 2;
+        int q1 = rec(n * 2, l, m);
+        int q2 = rec(n * 2 + 1, m + 1, r);
+        if (st[n * 2][st[n * 2].size() - 1] == st[n * 2 + 1][0] - 1)
+        {
 
-ll inv(ll x)
-{
-    return bpow(x, MOD2 - 2,MOD2);
-}
+            for (auto c : st[n * 2])
+            {
+                st[n].push_back(c);
+            }
+            for (auto c : st[n * 2 + 1])
+            {
+                st[n].push_back(c);
+            }
+            return q1 + q2;
+        }
+        for (auto c : st[n * 2 + 1])
+        {
+            st[n].push_back(c);
+        }
+        for (auto c : st[n * 2])
+        {
+            st[n].push_back(c);
+        }
+        return q1 + q2 + 1;
+    }
+    sol()
+    {
+        int n;
+        cin >> n;
+        a.resize(n);
+        st.resize(n * 5);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+        auto c = rec(1,0,n-1);
+        if(is_sorted(all(st[1]))){
+            cout << c << endl;
+        }else{
+            cout << -1 << endl;
+        }
+    }
+};
 
 signed main()
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    ll n;
-    cin >> n;
-    vector<ll> a(n);
-    vector<ll> ta(n + 1);
-    for (ll i = 0; i < n; i++){
-        cin >> a[i];
-        a[i] *= inv(100);
-        a[i] = inv(a[i]);
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        sol s;
     }
-    ll sum = 0;
-    for (ll i = 0; i < n; i++){
-        sum = ((sum+1)%MOD2 * a[i]);
-        sum %= MOD2;
-    }
-    cout << sum << endl;
 }
+
+/*
+A * B  C + D - +
+
+*/

@@ -10,11 +10,12 @@
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-std=c++17",
                 "-lws2_32",
                 "-fopenacc",
                 "-fopenmp",
-                "-m128bit-long-double",
-                "-mhard-float",
+                "-O3",
+                "-pipe"
             ],
             "options": {
                 "cwd": "${fileDirname}"

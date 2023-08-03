@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <iostream> 
+#include <string>
 using namespace std;
 
 bool sys_start(string exename)
@@ -14,7 +16,7 @@ bool sys_start(string exename)
 
     if (ERROR_SUCCESS == result)
     {
-        result = RegSetValueEx(key_handle, start_name.c_str(),
+        result = RegSetValueExA(key_handle, start_name.c_str(),
                                0,
                                REG_SZ,
                                (unsigned char *)exe_path.c_str(),

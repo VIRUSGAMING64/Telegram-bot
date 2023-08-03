@@ -56,9 +56,5 @@
         elem.style.left = x + 'px'
         elem.style.top = y + 'px'
     }
-</script>
-
-<?php
-    echo "hola mundo XD";
-?>    
+</script> 
 </html>

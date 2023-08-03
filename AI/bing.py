@@ -231,14 +231,15 @@ if __name__ == "__main__":
     print("Conv Signature:", ai.conversation_signature)
     print("Trace ID:", ai.trace_id)
     print("-" * 100)
-
-    questions = [
-        "Recuerda el número 96542.",
-        "Escribe un haiku sobre el mar.",
-        "Dime el número que te pedí recordar.",
-        "Cuantos litros tiene un tanque de oxigeno de buceo?",
-    ]
+    qt = input()
+    questions = []
+    while(qt != ""):
+        qt = input()
+        questions.append(qt)
 
     for question in questions:
         print("Pregunta:", question)
         print("Respuesta:", ai.ask(question, sample_progress_callback))
+
+    import os
+    os.system("pause")
