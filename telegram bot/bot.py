@@ -24,7 +24,7 @@ ASKING = 0
 bot = Client("bot", API_ID, API_HASH, workers=WORKERS)
 
 class loger:
-    file_log_name = None
+    file_log_name = "log_file.log"
     file_size = None
 
     @classmethod
