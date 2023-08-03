@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from utils import *
 from time import *
 import uvloop
-#INSTALLS
+#INSTALLS   
 # GLOBAL VARIABLES
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
@@ -123,10 +123,14 @@ async def Download(message,user_id):
             return
     except:
         print("error on check current download")
-    DOWNLOADER = user_id
-    await bot.download_media(message,progress=progres)
-    LAST_MESSAGE = ""
-    DOWNLOADER = ""
+    try:
+        DOWNLOADER = user_id
+        await bot.download_media(message,progress=progres)
+    except:    
+        pass
+    finally:
+        LAST_MESSAGE = ""
+        DOWNLOADER = ""
 
 @bot.on_message()
 async def on_message(client, message):
@@ -141,10 +145,8 @@ async def on_message(client, message):
     user = message.from_user.first_name
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
-    try:
-        await Download(message,ID)
-    except:
-        await bot.send_message(ID,"error on downloads")
+
+    await Download(message,ID)
     if msg == None:
         return #no text in message
     
