@@ -4,7 +4,6 @@ import os.path as path
 from pyrogram.types import Message
 from utils import *
 from time import *
-import uvloop
 #INSTALLS   
 # GLOBAL VARIABLES
 API_ID = 29695292
@@ -127,6 +126,7 @@ async def Download(message,user_id):
         DOWNLOADER = user_id
         await bot.download_media(message,progress=progres)
     except:    
+        DOWNLOADER = ""
         pass
     finally:
         LAST_MESSAGE = ""
