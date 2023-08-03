@@ -57,6 +57,7 @@ async def Download(message,user_id):
     try:
         DOWNLOADER = user_id
         await bot.download_media(message,progress=progres)
+        await bot.delete_messages(LAST_MESSAGE.chat.id,LAST_MESSAGE.id)
     except Exception as e:
         DOWNLOADER = ""
         if str(e) == "This message doesn't contain any downloadable media":
