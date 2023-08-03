@@ -97,23 +97,34 @@ class loger:
 
 log = loger("log_file.log")
 TotalUsers = log.read() 
-
+LAST_MESSAGE = ""
 async def progres(current, total):
-    s = f"{current * 100 / total:.1f}%"
-    print(s)
-    await bot.send_message(DOWNLOADER,str(s))   
+    global LAST_MESSAGE,DOWNLOADER
+    try:
+        s = f"{current * 100 / total:.1f}%"
+        print(s)
+        if(LAST_MESSAGE == ""):
+            LAST_MESSAGE = await bot.send_message(DOWNLOADER,str(s))   
+        else:
+            try:
+                await bot.edit_message_text(chat_id=LAST_MESSAGE.chat.id,message_id=LAST_MESSAGE.id,text=str(s))
+            except:
+                print("error on edit")
+    except:
+        print("error on id for download")
 
-async def Download(message,user):
+async def Download(message,user_id):
+    global DOWNLOADER
     try:
         if(DOWNLOADER != ""):
-            await bot.send_message(user,"user: "+DOWNLADER + " downloading file...")
+            await bot.send_message(user_id,"current download please wait")
             return
-        DOWNLOADER = user
-        await bot.download_media(message,progress=progres)
     except:
-        pass
-    finally:
-        DOWNLOADER = ""
+        print("error on check current download")
+    DOWNLOADER = user_id
+    await bot.download_media(message,progress=progres)
+    LAST_MESSAGE = ""
+    DOWNLOADER = ""
 
 @bot.on_message()
 async def on_message(client, message):
@@ -128,9 +139,10 @@ async def on_message(client, message):
     user = message.from_user.first_name
     find = 0
     data = "[" + str(user) + "," + str(ID) + "]"
-    
-    await Download(message,user)
-
+    try:
+        await Download(message,ID)
+    except:
+        await bot.send_message(ID,"error on downloads")
     if msg == None:
         return #no text in message
     
