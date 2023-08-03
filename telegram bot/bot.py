@@ -4,19 +4,10 @@ import os.path as path
 from pyrogram.types import Message
 from utils import *
 from time import *
-
+# GLOBAL VARIABLES
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 bot = Client("bot", API_ID, API_HASH)
-
-@bot.on_message(filters.private)
-async def on_message(client, message):
-    await message.reply("Hello from Pyrogram!")
-
-
-bot.run()
-"""
-# GLOBAL VARIABLES
 TotalUsers = []
 WAITING_FOR_FILENAME = 0
 CHANGE_DIR = 0
@@ -107,15 +98,7 @@ class loger:
             res.append(str)
             result.append(res)
         return result
-
-
-
-
-
-
-
-
-
+        
 async def Download(message):
     try:
         await bot.download_media(message,progress=progres)
@@ -150,19 +133,6 @@ async def on_message(client, message):
         TotalUsers = log.read()
 
     print("Message From: ", user, " ", msg)
-    
-    if msg == "/end_ask":
-        ASKING = 0
-        await bot.send_message(ID,"bing chat is disabled...")
-        return
-    if(ASKING == 1):
-        await bot.send_message(ID,"wait please...")
-        await bot.send_message(ID,ai_ask(msg))
-        return
-    if msg == "/ask":
-        ASKING = 1 
-        await bot.send_message(ID,"bing chat is enabled...")
-        return 
     
     if msg == "/notepad":
         WRITING = not WRITING
@@ -275,4 +245,3 @@ async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
 
 bot.run()
-"""
