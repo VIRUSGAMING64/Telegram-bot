@@ -33,7 +33,6 @@
 </head>
 
 <body bgcolor = "#FFFFFF">
-    <button id = "but">yisell</button>
 </body>
 <script>
 

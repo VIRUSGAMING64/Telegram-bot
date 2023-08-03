@@ -10,5 +10,3 @@ chmod - cmd mode
 getlog - get users in this bot
 alert - alert for all users
 notepad - notepad mode
-ask - start bing chat mode
-ask_end - finish bing chat mode

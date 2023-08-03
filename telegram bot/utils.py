@@ -73,9 +73,7 @@ class loger:
             result.append(res)
         return result
 
-async def progres(current, total):
-    s = f"{current * 100 / total:.1f}%"
-    print(s)
+
 
 def dir(s):
     if s == "/cd":
