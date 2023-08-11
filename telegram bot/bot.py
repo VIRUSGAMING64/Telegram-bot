@@ -15,14 +15,15 @@ MAX_MESSAGE_LENGTH = 4096
 WORKERS = 16
 ASKING = 0
 DOWNLOADER = ""
-bot = Client("bot", API_ID, API_HASH, workers=WORKERS,workdir=os.getcwd())  
+bot = Client("bot", API_ID, API_HASH, workers=WORKERS)  
+LAST_MEDIA_DOWNLOADED = ""
 log = loger("log_file.log")
 TotalUsers = log.read() 
 LAST_MESSAGE_DOWNLOAD = ""
 # END GLOBAL VARIABLES
 
 async def progres(current, total):
-    global LAST_MESSAGE_DOWNLOAD,DOWNLOADER
+    global LAST_MESSAGE_DOWNLOAD,LAST_MEDIA_DOWNLOADED,DOWNLOADER
     try:
         s = f"{current * 100 / total:.1f}%"
         porcent = current * 100 / total
@@ -51,7 +52,7 @@ async def Download(message,user_id):
         print("error on check current download")
     try:
         DOWNLOADER = user_id
-        await bot.download_media(message,progress=progres)
+        LAST_MEDIA_DOWNLOADED = await bot.download_media(message,progress=progres)
         await bot.delete_messages(LAST_MESSAGE_DOWNLOAD.chat.id,LAST_MESSAGE_DOWNLOAD.id)
     except Exception as e:
         DOWNLOADER = ""

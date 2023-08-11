@@ -4,7 +4,7 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 #ifdef LOCAL
-#define FAST_COMPILEr
+#define FAST_COMPILE
 #endif
 #ifndef FAST_COMPILE
 #ifdef LOCAL
@@ -48,61 +48,8 @@ typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
-int n;
-vector<vector<int>> m(13, vector<int>(13));
-void marck(int i, int j, int au)
-{
-    for (int l = 0; l < n; l++)
-    {
-        m[i][l] += au;
-        m[l][j] += au;
-    }
-    for (int l = 0; l < n; l++)
-    {
-        if (i + l < n && j + l < n)
-        {
-            m[i + l][j + l] += au;
-        }
-        if (i - l >= 0 && j - l >= 0)
-        {
-            m[i - l][j - l] += au;
-        }
-        if (i - l >= 0 && j + l < n)
-        {
-            m[i - l][j + l] += au;
-        }
-        if (i + l < n && j - l >= 0)
-        {
-            m[i + l][j - l] += au;
-        }
-    }
-}
-
-ll it = 0;
-ll dp(int x, int y)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-    ll cnt = 0;
-    for (int j = 0; j < n; j++)
-    {
-        if (m[y][j] >= 1)
-            continue;
-        marck(y, j, 1);
-        cnt += dp(x - 1, y + 1);
-        marck(y, j, -1);
-    }
-    return cnt;
-}
-
-// if col break 42649393
-//
 signed main()
 {
-    cin >> n;
-    cout << dp(n,0) << endl;
 }
 
 /*
