@@ -1,14 +1,7 @@
-from pyrogram import Client, filters
-import os
-import os.path as path
-from pyrogram.types import Message
 from utils import *
-from time import *
-#INSTALLS   
 # GLOBAL VARIABLES
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
-bot = Client("bot", API_ID, API_HASH)
 TotalUsers = []
 WAITING_FOR_FILENAME = 0
 CHANGE_DIR = 0
@@ -22,26 +15,28 @@ MAX_MESSAGE_LENGTH = 4096
 WORKERS = 16
 ASKING = 0
 DOWNLOADER = ""
-# END GLOBAL VARIABLES
-bot = Client("bot", API_ID, API_HASH, workers=WORKERS)  
+bot = Client("bot", API_ID, API_HASH, workers=WORKERS,workdir=os.getcwd())  
 log = loger("log_file.log")
 TotalUsers = log.read() 
-LAST_MESSAGE = ""
+LAST_MESSAGE_DOWNLOAD = ""
+# END GLOBAL VARIABLES
+
 async def progres(current, total):
-    global LAST_MESSAGE,DOWNLOADER
+    global LAST_MESSAGE_DOWNLOAD,DOWNLOADER
     try:
         s = f"{current * 100 / total:.1f}%"
         porcent = current * 100 / total
         MSG = str(str("* " * int(int(porcent) // 10)) + str(". " * (10 - (int(porcent) // 10))) + "\n" + str(s))
+        MSG = Fill_Border(MSG)
         print(MSG)
-        if(LAST_MESSAGE == ""):
+        if(LAST_MESSAGE_DOWNLOAD == ""):
             try:
-                LAST_MESSAGE = await bot.send_message(DOWNLOADER,MSG)   
+                LAST_MESSAGE_DOWNLOAD = await bot.send_message(DOWNLOADER,MSG)   
             except Exception as e:
                 print('error on first msg: ',e)
         else:
             try:
-                await bot.edit_message_text(chat_id=LAST_MESSAGE.chat.id,message_id=LAST_MESSAGE.id,text=MSG)
+                await bot.edit_message_text(chat_id=LAST_MESSAGE_DOWNLOAD.chat.id,message_id=LAST_MESSAGE_DOWNLOAD.id,text=MSG)
             except:
                 print("error on edit")
     except:
@@ -57,7 +52,7 @@ async def Download(message,user_id):
     try:
         DOWNLOADER = user_id
         await bot.download_media(message,progress=progres)
-        await bot.delete_messages(LAST_MESSAGE.chat.id,LAST_MESSAGE.id)
+        await bot.delete_messages(LAST_MESSAGE_DOWNLOAD.chat.id,LAST_MESSAGE_DOWNLOAD.id)
     except Exception as e:
         DOWNLOADER = ""
         if str(e) == "This message doesn't contain any downloadable media":
@@ -65,7 +60,7 @@ async def Download(message,user_id):
         else: 
             print(e)
     finally:
-        LAST_MESSAGE = ""
+        LAST_MESSAGE_DOWNLOAD = ""
         DOWNLOADER = ""
 
 @bot.on_message()
@@ -79,23 +74,23 @@ async def on_message(client, message):
     rute = os.getcwd()
     msg = message.text
     user = message.from_user.first_name
-    find = 0
-    data = "[" + str(user) + "," + str(ID) + "]"
-
     await Download(message,ID)
+    
     if msg == None:
         return #no text in message
     
+    #check if user is new
+    data = "[" + str(user) + "," + str(ID) + "]"
+    find = 0
     if data in TotalUsers:
         find = 1
-
     if find == 0:
         print("User: " + user + " is new")
         log.write(data)
         TotalUsers = log.read()
+    #endregion
 
-    print("Message From: ", user, " ", msg)
-    
+    #notepad mode
     if msg == "/notepad":
         WRITING = not WRITING
         if WRITING:
@@ -116,7 +111,9 @@ async def on_message(client, message):
         file.write(msg)
         file.close()
         return
+    #endregion
 
+    #cambia a consola y biseversa
     if msg == "/chmod":
         CMD = not CMD
         if CMD:
@@ -124,6 +121,8 @@ async def on_message(client, message):
         else:
             await bot.send_message(ID, "Chat mode change to normal bot")
         return
+    #endregion
+
 
     if msg == "/alert":
         if user != "VIRUSGAMING":
@@ -135,7 +134,6 @@ async def on_message(client, message):
         else:
             await bot.send_message(ID, "Chat mode change to normal bot")
         return
-
     if ALERT:
         M = GetLog(1)
         for i in range(len(M)):
@@ -144,12 +142,12 @@ async def on_message(client, message):
             await bot.send_message(M[i][1], msg)
         return
 
+
     if msg == "/getlog":
         datas = GetLog()
         for text in datas:
             await bot.send_message(ID, text)
         return
-
     if CMD:
         msg = commandos(msg, CMD)
         if len(msg) >= MAX_MESSAGE_LENGTH:
@@ -202,7 +200,6 @@ async def on_message(client, message):
 @bot.on_edited_message()
 async def on_edited_message(client, message):
     await on_message(client, message)
-
 
 @bot.on_deleted_messages()
 async def on_deleted_messages(client, message):

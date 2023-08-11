@@ -1,3 +1,0 @@
-INI POS: 9 9
-Map already exist...
-Loading Chunk: d:/Github/TELEGRAM-BOT/C++/myworld/MAP/00

@@ -1,6 +1,19 @@
 import os
 import threading as th
 import os.path as path
+from pyrogram import Client,filters
+from pyrogram.types import Message
+from time import *
+def Fill_Border(MSG):
+    ms ="+"*24+"\n"
+    ME = ""
+    for i in range(len(MSG)):
+        if MSG[i] == "\n":
+            ME += MSG[i]
+            ME+=" "*9
+            continue
+        ME+=MSG[i]
+    return ms+ME+"\n"+ms
 
 class loger:
     file_log_name = "log_file.log"
@@ -102,7 +115,6 @@ def dirs(s):
         return x
     else:
         return ""
-
 
 
 def helps(s):

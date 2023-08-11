@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "d:/"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,8 +15,8 @@
             ],
             "cStandard": "c17",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
         }
     ],
-    "version": 4
+    "version": 4,
 }
