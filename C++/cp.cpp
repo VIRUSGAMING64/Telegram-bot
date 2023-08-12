@@ -4,7 +4,7 @@
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 #ifdef LOCAL
-#define FAST_COMPILE
+#define FAST_COMPILEr
 #endif
 #ifndef FAST_COMPILE
 #ifdef LOCAL
@@ -50,14 +50,25 @@ typedef tree<ll, null_type, less_equal<ll>,
 
 signed main()
 {
+    ll t;
+    cin >> t;
+    vector<pair<string,int>> a;
+    for(int i = 'a'; i <= 'k'; i++)
+    {
+        for(int j = 'a'; j <= 'k'; j++)
+        {
+            string ax= "";
+            ax.push_back(char(i));
+            ax.push_back(char(j));
+            a.push_back({ax,0});
+        }
+    }
+    for(auto c:a){
+        debug(c);
+    }
+    while (t--)
+    {
+
+    }
+    return 0;
 }
-
-
-
-/*
-A * B  C + D - +
-
-
-
-
-*/
