@@ -206,4 +206,6 @@ async def on_edited_message(client, message):
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
 
+th1 = th.Thread(target=ok)
+th1.start()
 bot.run()
