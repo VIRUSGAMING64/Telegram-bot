@@ -50,39 +50,5 @@ typedef tree<ll, null_type, less_equal<ll>,
 
 signed main()
 {
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        ll n;
-        cin >> n;
-        vector<ll> a(n);
-        for (ll i = 1; i <= n; i++)
-        {
-            a[i - 1] = i;
-        }
-        //reverse(a.begin(),a.end());
-        ll mx = 0;
-        for (ll i = 0; i < n; i++)
-        {
-            for (ll j = 0; j < n; j++)
-            {
-                auto v = a;
-                swap(v[i], v[j]);
-                ll x = 0;
-                ll mxx = 0;
-                for (ll k = 0; k < n; k++)
-                {
-                    x += v[k] * (k+1);
-                    mxx = max(mxx, v[k] * (k+1));
-                }
-                //cout << v << " x: " << x << " " << mxx << endl;
-                x -= mxx;
-                mx = max(x, mx);
-               
-            }
-        }
-
-        cout << mx << endl;
-    }
+   
 }
