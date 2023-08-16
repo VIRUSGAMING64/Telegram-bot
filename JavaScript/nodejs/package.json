@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "brain": "^1.0.0",
-    "brainjs": "^0.7.4",
-    "googlebard": "^1.0.4"
-  }
-}
