@@ -6,22 +6,6 @@ from pyrogram import Client,filters
 from pyrogram.types import Message
 from time import *
 
-def notdown():
-    for i in range(1,10**4):
-        t=0
-        j=0
-        while j * j <= i:
-            j+=1
-            if i % j == 0:
-                t+=1
-                break 
-    print("---> 10mins count")
-
-def ok():
-    while True:
-        sleep(600)
-        notdown()
-
 def Fill_Border(MSG):
     ms ="+"*15+"\n"
     ME = ""
