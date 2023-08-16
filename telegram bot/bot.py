@@ -56,7 +56,7 @@ async def progres(current, total):
 
 
 async def Download(message, user_id):
-    global DOWNLOADER
+    global DOWNLOADER,LAST_MESSAGE_DOWNLOAD
     try:
         if DOWNLOADER != "":
             return
