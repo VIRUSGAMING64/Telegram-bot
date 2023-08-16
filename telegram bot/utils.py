@@ -23,7 +23,7 @@ def ok():
         notdown()
 
 def Fill_Border(MSG):
-    ms ="+"*24+"\n"
+    ms ="+"*15+"\n"
     ME = ""
     for i in range(len(MSG)):
         if MSG[i] == "\n":
