@@ -145,7 +145,9 @@ class BingAI:
         ws.send(dumps(payload) + "\x1e")
 
         progress_text: str = ""
-        while recv := ws.recv().split("\x1e"):
+        recv = 1
+        while recv:
+            recv = ws.recv().split("\x1e")
             for response in recv:
                 try:
                     data: dict = loads(response)
@@ -199,30 +201,33 @@ class BingAI:
                     ws.close()
                     return resp_text
 
+
 def callback(text: str):
     columns = os.get_terminal_size().columns
     text = "Respuesta: " + text
     lines = text.split("\n")
     uplines = len(lines) - 1
-    uplines += sum([len(line) // columns for line in lines])    
+    uplines += sum([len(line) // columns for line in lines])
     if uplines:
-        print((uplines+1)*(columns*" " + "\n"), end="\r",)
+        print(
+            (uplines + 1) * (columns * " " + "\n"),
+            end="\r",
+        )
         print(f"\033[{uplines+1}A", end="")
         print(text, end="\r", flush=True)
         print(f"\033[{uplines}A", end="")
     else:
         print(text, end="\r", flush=True)
-            
+
 
 if __name__ == "__main__":
-
-    ai = BingAI() #ejemplos
-    ai.new_conversation()    
+    ai = BingAI()  # ejemplos
+    ai.new_conversation()
     questions = [
         "Que es Minecraft??",
         "Que es un segment tree",
     ]
-    
+
     for question in questions:
         print("Pregunta:", question)
-        print("Respuesta:", ai.ask(question,callback))
+        print("Respuesta:", ai.ask(question))

@@ -2,20 +2,27 @@ import os
 from pyrogram.raw import *
 import threading as th
 import os.path as path
-from pyrogram import Client,filters
+from pyrogram import Client, filters
 from pyrogram.types import Message
 from time import *
+from bing import *
+
+def ask_q(question):
+    ai = BingAI()  # ejemplos
+    ai.new_conversation()
+    return str(ai.ask(question))
 
 def Fill_Border(MSG):
-    ms ="+"*15+"\n"
+    ms = "+" * 15 + "\n"
     ME = ""
     for i in range(len(MSG)):
         if MSG[i] == "\n":
             ME += MSG[i]
-            ME+=" "*9
+            ME += " " * 9
             continue
-        ME+=MSG[i]
-    return ms+ME+"\n"+ms
+        ME += MSG[i]
+    return ms + ME + "\n" + ms
+
 
 class loger:
     file_log_name = "log_file.log"
@@ -32,7 +39,7 @@ class loger:
             self.file_log_name = file
         else:
             print("creating new log file")
-            file = open(file, 'w')
+            file = open(file, "w")
             file.close()
 
     @classmethod
@@ -44,7 +51,7 @@ class loger:
     @classmethod
     def write(self, data: str):
         file = open(self.file_log_name, "a")
-        file.write(data+"\n")
+        file.write(data + "\n")
         file.close()
 
     @classmethod
@@ -89,11 +96,11 @@ class loger:
         return result
 
 
-
 def dir(s):
     if s == "/cd":
         return os.getcwd()
     return ""
+
 
 def chdir(s):
     try:
@@ -168,7 +175,8 @@ def cmd(comand):
     os.remove("F.txt")
     return res
 
-def GetLog(matrix = 0):
+
+def GetLog(matrix=0):
     log = loger("log_file.log")
     data = log.read()
     data = log.decode(data)

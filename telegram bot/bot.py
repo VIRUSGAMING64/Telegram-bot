@@ -3,14 +3,15 @@ from utils import *
 # GLOBAL VARIABLES
 API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
+ALERT = 0
+ACTUAL_MESSAGE = ""
+
 TotalUsers = []
 WAITING_FOR_FILENAME = 0
+CMD = 0
 CHANGE_DIR = 0
 NOTEPAD_FILENAME = 0
-CMD = 0
-ALERT = 0
 GETING_FILENAME = 0
-ACTUAL_MESSAGE = ""
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
 WORKERS = 16
@@ -54,7 +55,7 @@ async def progres(current, total):
     except:
         print("error on id for download")
 
-
+l : Message
 async def Download(message, user_id):
     global DOWNLOADER,LAST_MESSAGE_DOWNLOAD
     try:
@@ -94,7 +95,7 @@ async def on_message(client, message):
 
     if msg == None:
         return  # no text in message
-
+    
     # check if user is new
     data = "[" + str(user) + "," + str(ID) + "]"
     find = 0
@@ -105,7 +106,14 @@ async def on_message(client, message):
         log.write(data)
         TotalUsers = log.read()
     # endregion
-
+    # chat with bing 
+    if (msg == "/bing"):
+        ASKING = not ASKING
+        await bot.send_message(ID,"asking: " + str(ASKING))
+        return
+    if ASKING:
+        await bot.send_message(ID,ask_q(msg))
+        return 
     # notepad mode
     if msg == "/notepad":
         WRITING = not WRITING
