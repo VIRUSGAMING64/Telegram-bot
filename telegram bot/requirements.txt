@@ -3,5 +3,4 @@ websocket-client
 flask
 tgcrypto
 uvloop
-uuid4
 requests
