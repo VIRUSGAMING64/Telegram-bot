@@ -3,7 +3,7 @@ import websocket  # pip install websocket-client
 from typing import Callable, List
 from json import loads, dumps
 from uuid import uuid4
-from random import randbytes
+from random import *
 import os
 
 
@@ -108,11 +108,11 @@ class BingAI:
 
         if ret["result"]["value"] != "Success":
             raise Exception(ret["result"]["message"])
-
+        myrand = Random()
         self.conversation_id = ret["conversationId"]
         self.client_id = ret["clientId"]
         self.conversation_signature = ret["conversationSignature"]
-        self.trace_id = randbytes(16).hex()
+        self.trace_id = myrand.randbytes(16).hex()
 
     def ask(self, text: str, progress_callback: Callable | None = None):
         if not (
