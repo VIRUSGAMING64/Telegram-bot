@@ -106,14 +106,17 @@ async def on_message(client, message):
         log.write(data)
         TotalUsers = log.read()
     # endregion
+    """
     # chat with bing 
     if (msg == "/bing"):
         ASKING = not ASKING
         await bot.send_message(ID,"asking: " + str(ASKING))
         return
     if ASKING:
+        await bot.send_message(ID,"thinking...")
         await bot.send_message(ID,ask_q(msg))
         return 
+    """
     # notepad mode
     if msg == "/notepad":
         WRITING = not WRITING
