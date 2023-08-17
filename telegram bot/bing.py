@@ -114,7 +114,7 @@ class BingAI:
         self.conversation_signature = ret["conversationSignature"]
         self.trace_id = myrand.randbytes(16).hex()
 
-    def ask(self, text: str, progress_callback: Callable | None = None):
+    def ask(self, text):
         if not (
             self.client_id
             and self.conversation_id
@@ -159,26 +159,9 @@ class BingAI:
                     ws.send(dumps({"type": 6}) + "\x1e")  # Pong
 
                 elif data.get("type") == 1:  # En progreso
-                    if progress_callback:
-                        try:
-                            progress_message: list = data.get("arguments", [{}])[0].get(
-                                "messages", [{}]
-                            )[0]
-                            new_text = (
-                                progress_message.get("adaptiveCards", [{}])[0]
-                                .get("body", [{}])[0]
-                                .get("text")
-                            ) or progress_message.get("text")
-
-                            if new_text and new_text != progress_text:
-                                progress_text = new_text
-                                progress_callback(new_text)
-                        except Exception:
-                            pass
-
+                    pass
                 elif data.get("type") == 2:  # Respuesta completa
                     messages: list = data.get("item", {}).get("messages", [])
-
                     try:
                         response_message: dict = (
                             message
@@ -189,15 +172,12 @@ class BingAI:
                         ).__next__()
                     except Exception:
                         raise Exception("Could not retrieve any viable message")
-
                     resp_text = (
                         response_message.get("adaptiveCards", [{}])[0]
                         .get("body", [{}])[0]
                         .get("text")
                     ) or response_message.get("text")
-
                     self.chat.append({"user": text, "bot": resp_text})
-
                     ws.close()
                     return resp_text
 
