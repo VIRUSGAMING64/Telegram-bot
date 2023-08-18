@@ -50,5 +50,25 @@ typedef tree<ll, null_type, less_equal<ll>,
 
 signed main()
 {
-   
+    ll t = 1;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<ll> a(n);
+        vector<vector<ll>> dp(n + 10, vector<ll>(4));
+        for (int i = 0; i < n; i++)
+        {
+            cin >> a[i];
+        }
+        for (int i = 0; i < n; i++)
+        {
+            dp[i + 1][0] = max(dp[i + 1][0], dp[i][0] + ((i % 2 == 0) ? (a[i]) : (0ll))); 
+            dp[i + 2][1] = max(dp[i + 2][1], max(dp[i][0], dp[i][1]) + ((i % 2 == 0) ? (a[i + 1]) : (a[i]))); 
+            dp[i + 1][2] = max(dp[i + 1][2], max({dp[i][0], dp[i][1], dp[i][2]}) + ((i % 2 == 0) ? (a[i]) : (0ll))); 
+        }
+        cout << max({dp[n][0], dp[n][1], dp[n][2]}) << endl;
+    }
+    return 0;
 }

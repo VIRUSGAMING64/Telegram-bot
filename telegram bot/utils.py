@@ -5,12 +5,12 @@ import os.path as path
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from time import *
-from bing import *
+
+import gpt4free
+from gpt4free import Provider, forefront
 
 def ask_q(question):
-    ai = BingAI()  # ejemplos
-    ai.new_conversation()
-    return str(ai.ask(question))
+    return gpt4free.Completion.create(Provider.You, prompt=question)
 
 def Fill_Border(MSG):
     ms = "+" * 15 + "\n"

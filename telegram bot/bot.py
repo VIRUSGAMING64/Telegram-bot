@@ -55,7 +55,6 @@ async def progres(current, total):
     except:
         print("error on id for download")
 
-l : Message
 async def Download(message, user_id):
     global DOWNLOADER,LAST_MESSAGE_DOWNLOAD
     try:
@@ -106,17 +105,18 @@ async def on_message(client, message):
         log.write(data)
         TotalUsers = log.read()
     # endregion
-    """
-    # chat with bing 
-    if (msg == "/bing"):
+    # chatgpt mode 
+    if (msg == "/ask"):
         ASKING = not ASKING
         await bot.send_message(ID,"asking: " + str(ASKING))
         return
     if ASKING:
-        await bot.send_message(ID,"thinking...")
+        ANT = await bot.send_message(ID,"thinking...")
         await bot.send_message(ID,ask_q(msg))
+        await bot.delete_messages(ANT.chat.id,ANT.id)
         return 
-    """
+    #endregion
+    
     # notepad mode
     if msg == "/notepad":
         WRITING = not WRITING

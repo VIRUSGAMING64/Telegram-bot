@@ -4,3 +4,4 @@ flask
 tgcrypto
 uvloop
 requests
+gpt4free
