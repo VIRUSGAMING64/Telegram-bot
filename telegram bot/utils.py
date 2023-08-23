@@ -11,7 +11,15 @@ from gpt4free import Provider, forefront
 
 def ask_q(question):
     return gpt4free.Completion.create(Provider.You, prompt=question)
-
+def urlget(url,filename):
+    try:
+        res = ur.urlopen(url)
+        file = open(filename,"wb")
+        while (file.wirte(res.read(1024**2))):
+            print("Downloaded 1MB")
+    except Exception as e:
+        return "Error while download url: " + str(e)
+    return "Download finished"
 def Fill_Border(MSG):
     ms = "+" * 15 + "\n"
     ME = ""
@@ -140,6 +148,7 @@ def helps(s):
             "/getlog",
             "/alert",
             "/notepad",
+            "/urlget",
         ]
         msg = ""
         for i in m:

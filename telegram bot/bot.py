@@ -5,7 +5,6 @@ API_ID = 29695292
 API_HASH = "8b05ce00146edeeae7aafc4bea30e713"
 ALERT = 0
 ACTUAL_MESSAGE = ""
-
 TotalUsers = []
 WAITING_FOR_FILENAME = 0
 CMD = 0
@@ -14,6 +13,7 @@ NOTEPAD_FILENAME = 0
 GETING_FILENAME = 0
 WRITING = 0
 MAX_MESSAGE_LENGTH = 4096
+GETING_URL = 0
 WORKERS = 16
 ASKING = 0
 DOWNLOADER = ""
@@ -82,7 +82,7 @@ async def Download(message, user_id):
 @bot.on_message()
 async def on_message(client, message):
     global WAITING_FOR_FILENAME, log, CHANGE_DIR, CMD, TotalUsers, ALERT, WRITING, GETING_FILENAME
-    global ASKING, NOTEPAD_FILENAME, ACTUAL_MESSAGE
+    global ASKING, NOTEPAD_FILENAME, ACTUAL_MESSAGE,GETING_URL
     cmd = ""
     chat_type = message.chat.type
     ACTUAL_MESSAGE = message
@@ -149,7 +149,31 @@ async def on_message(client, message):
             await bot.send_message(ID, "Chat mode change to normal bot")
         return
     # endregion
-
+    if GETING_URL:
+        GETTING_URL = 0
+        try:
+            msg = msg.split(' ')
+            await bot.send_message(ID,geturl(msg[0],msg[1]))
+        except:
+            await bot.send_message(ID,"Error on your message")
+        pass
+    if "/urlget" in msg:
+        msg = msg.split(' ')
+        pos = -1
+        for i in range(len(msg)):
+            if msg[i] == "/urlget":
+                pos = i+1
+                break
+        if pos == len(msg):
+            GETING_URL = 1
+            await bot.send_message(ID,"send url and filename separated by spaces")
+        TEMP = await bot.send_message(ID,"downloading")
+        try:
+            await bot.send_message(ID,geturl(msg[pos],msg[pos+1]))
+        except:
+            await bot.edit_message_text(TEMP.chat.id,TEMP.id,"Error on command sintax")
+            return
+        await bot.delete_messages(ID,TEMP.id)
     if msg == "/alert":
         if user != "VIRUSGAMING":
             await bot.send_message(ID, "Access denied...")
