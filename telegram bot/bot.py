@@ -153,10 +153,11 @@ async def on_message(client, message):
         GETTING_URL = 0
         try:
             msg = msg.split(' ')
-            await bot.send_message(ID,geturl(msg[0],msg[1]))
+            await bot.send_message(ID,urlget(msg[0],msg[1]))
         except:
             await bot.send_message(ID,"Error on your message")
         pass
+        return
     if "/urlget" in msg:
         msg = msg.split(' ')
         pos = -1
@@ -167,13 +168,15 @@ async def on_message(client, message):
         if pos == len(msg):
             GETING_URL = 1
             await bot.send_message(ID,"send url and filename separated by spaces")
+            return
         TEMP = await bot.send_message(ID,"downloading")
         try:
-            await bot.send_message(ID,geturl(msg[pos],msg[pos+1]))
+            await bot.send_message(ID,urlget(msg[pos],msg[pos+1]))
         except:
             await bot.edit_message_text(TEMP.chat.id,TEMP.id,"Error on command sintax")
             return
         await bot.delete_messages(ID,TEMP.id)
+        return
     if msg == "/alert":
         if user != "VIRUSGAMING":
             await bot.send_message(ID, "Access denied...")
