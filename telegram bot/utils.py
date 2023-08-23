@@ -15,7 +15,7 @@ def urlget(url,filename):
     try:
         res = ur.urlopen(url)
         file = open(filename,"wb")
-        while (file.wirte(res.read(1024**2))):
+        while (file.write(res.read(1024**2))):
             print("Downloaded 1MB")
     except Exception as e:
         return "Error while download url: " + str(e)

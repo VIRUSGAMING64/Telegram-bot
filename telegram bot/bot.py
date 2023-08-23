@@ -150,7 +150,7 @@ async def on_message(client, message):
         return
     # endregion
     if GETING_URL:
-        GETTING_URL = 0
+        GETING_URL = 0
         try:
             msg = msg.split(' ')
             await bot.send_message(ID,urlget(msg[0],msg[1]))
