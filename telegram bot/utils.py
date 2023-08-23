@@ -18,7 +18,9 @@ def urlget(url,filename):
         while (file.write(res.read(1024**2))):
             print("Downloaded 1MB")
     except Exception as e:
+        file.close()
         return "Error while download url: " + str(e)
+    file.close()
     return "Download finished"
 def Fill_Border(MSG):
     ms = "+" * 15 + "\n"

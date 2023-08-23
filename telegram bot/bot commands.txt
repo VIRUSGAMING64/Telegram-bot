@@ -11,3 +11,4 @@ getlog - get users in this bot
 alert - alert for all users
 notepad - notepad mode
 ask - chat with bing ai
+urlget - download url with specific name
