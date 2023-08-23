@@ -5,7 +5,7 @@ import os.path as path
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from time import *
-import urllib as ur
+import urllib.request as ur
 import gpt4free
 from gpt4free import Provider, forefront
 
