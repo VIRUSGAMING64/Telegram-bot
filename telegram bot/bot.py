@@ -224,12 +224,10 @@ async def on_message(client, message):
         await bot.send_message(ID, "Enter directory name: ")
         CHANGE_DIR = True
         return
-
     elif CHANGE_DIR == True:
         CHANGE_DIR = False
         msg = chdir(msg)
         await bot.send_message(ID, msg)
-
     elif WAITING_FOR_FILENAME == True:
         WAITING_FOR_FILENAME = False
         TEMP = await bot.send_message(ID, "uploading to telegram...")
@@ -247,23 +245,24 @@ async def on_message(client, message):
         await bot.send_message(ID, cmd)
     except:
         pass
-
+    pass
 
 @bot.on_edited_message()
 async def on_edited_message(client, message):
     await on_message(client, message)
-
+    pass
 
 @bot.on_deleted_messages()
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
-
+    pass
 def timer():
     global START_TIME
     while 1:
         sleep(600)
         print("10 mins")
         try:
+            await bot.send_message(1659735368,"Restarting bot")
             bot.stop()
             res = rq.get("https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk")
             JS=res.json()
@@ -271,6 +270,7 @@ def timer():
             exit(0)
         except:
             pass
+    pass
 TH = th.Thread(target=timer)
 TH.start()
 bot.run()
