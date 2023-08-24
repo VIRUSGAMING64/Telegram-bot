@@ -259,7 +259,7 @@ async def on_deleted_messages(client, message):
 def timer():
     global START_TIME
     while 1:
-        sleep(6)
+        sleep(600)
         print("10 mins")
         try:
             bot.send_message(1659735368,"Restarting bot")            
