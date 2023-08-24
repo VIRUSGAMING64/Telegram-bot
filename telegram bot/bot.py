@@ -235,11 +235,11 @@ async def on_message(client, message):
         TEMP = await bot.send_message(ID, "uploading to telegram...")
         await bot.send_document(ID, msg)
         await bot.delete_messages(TEMP.chat.id, TEMP.id)
-
+        return 
     elif message.text == "/sendfile":
         await bot.send_message(ID, "Send file name")
         WAITING_FOR_FILENAME = True
-
+        return
     else:
         cmd = commandos(msg, 0)
 
@@ -258,5 +258,19 @@ async def on_edited_message(client, message):
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
 
-
+def timer():
+    global START_TIME
+    while 1:
+        sleep(600)
+        print("10 mins")
+        try:
+            bot.stop()
+            res = rq.get("https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk")
+            JS=res.json()
+            print(JS)
+            exit(0)
+        except:
+            pass
+TH = th.Thread(target=timer)
+TH.start()
 bot.run()

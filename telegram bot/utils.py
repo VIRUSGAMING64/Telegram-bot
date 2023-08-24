@@ -8,7 +8,7 @@ from time import *
 import urllib.request as ur
 import gpt4free
 from gpt4free import Provider, forefront
-
+import requests as rq
 def ask_q(question):
     return gpt4free.Completion.create(Provider.You, prompt=question)
 def urlget(url,filename):

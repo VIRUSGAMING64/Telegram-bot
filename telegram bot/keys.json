@@ -1,5 +1,13 @@
 {
-    "render":"rnd_btmL22M2Qj6hxizpVP0k85ZZiTfV",
-    "openai":"",
-    "codeforces":""
+    "render": {
+        "key": "rnd_btmL22M2Qj6hxizpVP0k85ZZiTfV",
+        "hook": "https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk" 
+    },
+    "openai": {
+        "key": ""
+    },
+    "codeforces": {
+        "key": "",
+        "secret": ""
+    }
 }
