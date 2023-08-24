@@ -259,18 +259,29 @@ async def on_deleted_messages(client, message):
 def timer():
     global START_TIME
     while 1:
-        sleep(600)
+        sleep(6)
         print("10 mins")
         try:
-            await bot.send_message(1659735368,"Restarting bot")
+            bot.send_message(1659735368,"Restarting bot")            
             bot.stop()
             res = rq.get("https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk")
             JS=res.json()
             print(JS)
             exit(0)
-        except:
+        except Exception as e:
+            print(e)
             pass
     pass
+def start():
+    while not bot.is_connected:
+        sleep(0.01)
+    bot.send_message(1659735368,"bot started...")
+
+
 TH = th.Thread(target=timer)
+STARTUP = th.Thread(target=start)
+
+STARTUP.start()
 TH.start()
 bot.run()
+    
