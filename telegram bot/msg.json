@@ -1,0 +1,35 @@
+{
+    "_": "InlineQuery",
+    "id": "7128509128740987744",
+    "from_user": {
+        "_": "User",
+        "id": 1659735368,
+        "is_self": false,
+        "is_contact": false,
+        "is_mutual_contact": false,
+        "is_deleted": false,
+        "is_bot": false,
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "is_premium": false,
+        "first_name": "VIRUSGAMING",
+        "status": "UserStatus.RECENTLY",
+        "username": "Virusgaming6",
+        "language_code": "en",
+        "dc_id": 1,
+        "phone_number": "*********",
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADAQAD9K0xG5j2gUcAEAIAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "small_photo_unique_id": "AgAD9K0xG5j2gUc",
+            "big_file_id": "AQADAQAD9K0xG5j2gUcAEAMAA0iN7WIABEgr5moZo1N3AAQeBA",
+            "big_photo_unique_id": "AgAD9K0xG5j2gUc"
+        }
+    },
+    "query": "",
+    "offset": "",
+    "chat_type": "ChatType.BOT"
+}     

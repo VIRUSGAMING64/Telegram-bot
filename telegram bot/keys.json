@@ -4,6 +4,13 @@
         "hook": "https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk",
         "ssh":""
     },
+    "vercel":{
+
+    },
+    "WebHook":{
+        "start":"https://api.telegram.org/bot5769859964:AAHzXgAwBz4cLmldY2eIq2tmI0bhMHcpuhg/setWebhook?url=https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk",
+        "delete":"https://api.telegram.org/bot5769859964:AAHzXgAwBz4cLmldY2eIq2tmI0bhMHcpuhg/deleteWebhook"
+    },
     "openai": {
         "key": ""
     },

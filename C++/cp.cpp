@@ -43,32 +43,124 @@ using namespace std;
 #define F first
 #define THREAD_NUM 32
 #define MOD 1000000007
-const ll INF = 1e18, MAXN = 1e6;
+const ll INF = 1e18, MAXN = 1e6 * 4;
 typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
+ll lazy[MAXN];
+vector<ll> p;
+
+void prop(ll n, ll l, ll r, ll di = 0)
+{
+    if (di > 2)
+        return;
+    if (lazy[n] == 0)
+        return;
+    if (l == r)
+    {
+        p[l] += lazy[n];
+    }
+    else
+    {
+        lazy[n * 2] += lazy[n];
+        lazy[n * 2 + 1] += lazy[n];
+    }
+    lazy[n] = 0;
+}
+
+void update(ll n, ll l, ll r, ll a, ll b, ll val)
+{
+    assert((n > 0) and (l <= r));
+    prop(n, l, r);
+    if (l > b || r < a)
+        return;
+    if (l >= a && r <= b)
+    {
+        lazy[n] += val;
+        prop(n, l, r);
+        return;
+    }
+    ll m = (l + r) / 2;
+    update(n * 2, l, m, a, b, val);
+    update(n * 2 + 1, m + 1, r, a, b, val);
+}
+
+ll Q(ll n, ll l, ll r, ll po)
+{
+    assert(n > 0);
+    prop(n, l, r);
+    if (l == r)
+    {
+        return p[po];
+    }
+    ll m = (l + r) / 2;
+    if (po <= m)
+    {
+        return Q(n * 2, l, m, po);
+    }
+    else
+    {
+        return Q(n * 2 + 1, m + 1, r, po);
+    }
+}
+
 signed main()
 {
-    ll t = 1;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    ll t;
     cin >> t;
     while (t--)
     {
-        int n;
+        for (ll i = 0; i < MAXN; i++)
+        {
+            lazy[i] = 0;
+        }
+        ll n;
         cin >> n;
-        vector<ll> a(n);
-        vector<vector<ll>> dp(n + 10, vector<ll>(4));
-        for (int i = 0; i < n; i++)
+        vector<ll> a(n + 30);
+        p.resize(0);
+        p.resize(n + 10000);
+
+        vector<deque<ll>> q(n + 10000);
+        for (ll i = 1; i <= n; i++)
         {
             cin >> a[i];
+            q[a[i]].push_back(i);
         }
-        for (int i = 0; i < n; i++)
+        ll res = 0;
+        for (ll i = 1; i <= n; i++)
         {
-            dp[i + 1][0] = max(dp[i + 1][0], dp[i][0] + ((i % 2 == 0) ? (a[i]) : (0ll))); 
-            dp[i + 2][1] = max(dp[i + 2][1], max(dp[i][0], dp[i][1]) + ((i % 2 == 0) ? (a[i + 1]) : (a[i]))); 
-            dp[i + 1][2] = max(dp[i + 1][2], max({dp[i][0], dp[i][1], dp[i][2]}) + ((i % 2 == 0) ? (a[i]) : (0ll))); 
-        }
-        cout << max({dp[n][0], dp[n][1], dp[n][2]}) << endl;
+
+            if (q[a[i]].size() < 2)
+                continue;
+            // for (ll i = 1; i <= n; i++)
+            // {
+            // cerr << Q(1, 1, n, i) << " ";
+            //}
+            // cerr << "\n";
+            q[a[i]].pop_front();
+            ll b = q[a[i]].back();
+            q[a[i]].pop_back();
+            res += [&]()
+            {
+                ll aa = i;
+                // cerr<< "\n" << a << " " << b;
+                // cerr << aa << "  " << b << "\n";
+                ll ka = aa;
+                ll kb = b;
+                aa += Q(1, 1, n, aa);
+                b += Q(1, 1, n, b);
+                // cerr << aa << "  " << b << "\n";
+                // cerr << "-----------\n";
+                ll sum = abs(aa - b);
+                update(1, 1, n, ka + 1, n, -1);
+                update(1, 1, n, kb + 1, n, -1);
+                return sum;
+            }();
+        } // cerr << "\n---------\n";
+        cout << res << "\n";
     }
     return 0;
 }

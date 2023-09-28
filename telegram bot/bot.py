@@ -83,6 +83,7 @@ async def Download(message, user_id):
 async def on_message(client, message):
     global WAITING_FOR_FILENAME, log, CHANGE_DIR, CMD, TotalUsers, ALERT, WRITING, GETING_FILENAME
     global ASKING, NOTEPAD_FILENAME, ACTUAL_MESSAGE,GETING_URL
+    print(message)
     cmd = ""
     chat_type = message.chat.type
     ACTUAL_MESSAGE = message
@@ -256,6 +257,10 @@ async def on_edited_message(client, message):
 async def on_deleted_messages(client, message):
     bot.send_message(message.chat.id, "lo borraste...")
     pass
+@bot.on_inline_query()
+def on_inline_query(client,message):
+    pass
+
 def timer():
     global START_TIME
     while 1:
@@ -272,16 +277,20 @@ def timer():
             print(e)
             pass
     pass
+
 def start():
     while not bot.is_connected:
         sleep(0.01)
     bot.send_message(1659735368,"bot started...")
 
 
+#initialize treads
 TH = th.Thread(target=timer)
 STARTUP = th.Thread(target=start)
 
+#run threads
 STARTUP.start()
 TH.start()
+
 bot.run()
     

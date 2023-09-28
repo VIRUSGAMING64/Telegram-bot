@@ -96,5 +96,7 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.default.compilerPath": "d:\\SOFTWARE\\mingw64\\bin\\g++.exe"
 }
