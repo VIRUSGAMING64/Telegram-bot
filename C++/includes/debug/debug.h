@@ -4,14 +4,31 @@ template <class T>
 inline std::ostream &operator<<(std::ostream &out, std::vector<T> v)
 {
     for (auto c : v)
-        out <<" "<< c << " ";
+        out << " " << c << " ";
+    return out;
+}
+template <class T>
+inline std::ostream &operator<<(std::ostream &out, std::vector<std::pair<T, T>> v)
+{
+    for (auto c : v)
+    {
+        out << c.first << " " << c.second << std::endl;
+    }
+    return out;
+}
+template <class T>
+inline std::ostream &operator<<(std::ostream &out, std::pair<T, T> v)
+{
+    out << v.first << " " << v.second << std::endl;
+
     return out;
 }
 template <class T>
 inline std::ostream &operator<<(std::ostream &out, std::vector<std::vector<T>> v)
 {
-    for(int i = 0; i < v.size(); i++){
-        out << i<< ": " << v[i] << "\n";
+    for (int i = 0; i < v.size(); i++)
+    {
+        out << i << ": " << v[i] << "\n";
     }
     return out;
 }
@@ -23,8 +40,8 @@ inline std::ostream &operator<<(std::ostream &out, std::map<arg1, arg2> mp)
         out << c.first << " " << c.second << "\n";
     return out;
 }
-template <class arg1,class arg2>
-inline std::ostream &operator<<(std::ostream &out, std::pair<arg1,arg2> p)
+template <class arg1, class arg2>
+inline std::ostream &operator<<(std::ostream &out, std::pair<arg1, arg2> p)
 {
     out << p.first << " " << p.second;
     return out;

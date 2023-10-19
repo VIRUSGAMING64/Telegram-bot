@@ -1,6 +1,6 @@
 {
     "render": {
-        "key": "rnd_btmL22M2Qj6hxizpVP0k85ZZiTfV",
+        "apikey":"rnd_VqKDExFmFI9fE4B1oWx3lJ4BZJzJ",
         "hook": "https://api.render.com/deploy/srv-cj5gqlqcn0vc73bqcfa0?key=MX44ixu4pCk",
         "ssh":""
     },

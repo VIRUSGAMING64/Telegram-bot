@@ -2,6 +2,33 @@
     "tasks": [
         {
             "type": "cppbuild",
+            "label": "C/C++ --> ASM",
+            "command": "g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-std=c++17",
+                "-S",
+                "-lws2_32",
+                "-fopenacc",
+                "-fopenmp",
+                "-O3",
+                "-pipe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Tarea generada por el depurador."
+        },
+        {
+            "type": "cppbuild",
             "label": "C/C++: g++.exe compilar archivo activo",
             "command": "g++",
             "args": [
