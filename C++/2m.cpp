@@ -105,9 +105,13 @@ void dfs(ll x, ll xr = 0, ll P = -1, ll d = 0)
     e.push_back(x);
     for (ll i = 0; i < 25; i++)
     {
+        if(P != -1)
+        {
+            dp[x][i] += dp[P][i];
+        }
         if (xr & (1 << i))
         {
-            dp[x][i] += 1;
+            dp[x][i]++;
         }
     }
     for (auto c : g[x])
@@ -187,8 +191,9 @@ signed main()
         {
             for (int j = 0; j < 25; j++)
             {
-                // cerr << dp[i][j] << " ";
-            } // cerr << endl;
+                cerr << dp[i][j] << " ";
+            }
+            cerr << endl;
         }
         while (q--)
         {
