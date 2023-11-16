@@ -28,7 +28,9 @@ int main()
     cin >> m;
     if (n > 500)
     {
-        freopen("test.in", "w", stdout);
+        cout << "Is to long\n";
+        return 0;
+        //freopen("test.in", "w", stdout);
     }
 
     if(type == 1 || type == 2){

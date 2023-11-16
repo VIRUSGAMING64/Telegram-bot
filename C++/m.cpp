@@ -22,7 +22,6 @@ typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
-mt19937_64 random(chrono::steady_clock::now().time_since_epoch().count());
 
 class ST
 {
@@ -97,52 +96,20 @@ public:
     }
 };
 
-ll SUM(ll x)
-{
-    ll sum = 0;
-    while (x != 0)
-    {
-        sum += x % 10;
-        x /= 10;
+ll bpow(ll &a,ll e,const ll &mod){
+    if(e == 0)return 1;
+    if(e == 1)return a;
+    ll t = bpow(a,e/2,mod);
+    t = (t%mod*t%mod)%mod;
+    if(e & 1){
+        t = (t%mod * a%mod)%mod;
     }
-    return sum;
+    return t;
 }
-
-int nxt()
-{
-    int x;
-    cin >> x;
-    return x;
-}
-
-map<int, char> math;
 
 signed main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int t;
-    t = 1;
-    // cin >> t;
-    int n;
-    cin >> n;
-    vector<int> b(n);
-    vector<pair<int,int>> a(n);
-    for(int i = 0  ; i < n; i++){
-      cin >> a[i].first ;
-      a[i].second = i;
-    }for(int i = 0 ; i < n; i++){
-      cin >> b[i];
-    }
-    //sort(a.rbegin(),a.rend());
-    sort(b.rbegin(),b.rend());
-    for(int i = 0 ; i < n; i++){
-      a[i].first+=b[i];
-      a[i].first%= n;
-      swap(a[i].first,a[i].second);
-    }
-    sort(a.begin(),a.end());
-    for(auto c:a){
-      cout << c.second << " ";
-    }
+
 }

@@ -1,0 +1,1 @@
+{"name":"Local: k","url":"d:\\GitHub\\Telegram-bot\\C++\\k.py","tests":[{"id":1698698345829,"input":"4\n11 3 0 0\n11 3 20 20\n11 3 6 1\n100000000 2 0 0","output":"5\n0\n1\n50000000"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\GitHub\\Telegram-bot\\C++\\k.py","group":"local","local":true}

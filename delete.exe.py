@@ -1,4 +1,3 @@
-from ctypes import WinDLL
 from genericpath import isdir, isfile
 import os
 import threading as th
@@ -6,37 +5,49 @@ from pathlib import *
 file = None
 dele = 0
 
-def dfs(path:str):
+def dfs(directory:str,hides = True):
     global file,dele
+    #print(directory)
     try:
-        if path.endswith(".out") or path.endswith(".exe") or path.endswith(".in") or path.endswith(".bin")  or path.startswith("."):
-            print(path)
-            file.write(path+"\n")
-            dele+=1
-            os.remove(path)
-    except:
+        if(directory.startswith(".") and hides == False):
+            return 
+        if directory.endswith(".out") or directory.endswith(".exe") or directory.endswith(".in") or directory.endswith(".bin") or directory.startswith("."):
+            try:    
+                os.remove(directory)
+                print(directory)
+                file.write(directory+"\n")
+                dele+=1
+                return
+            except Exception as e:
+                try:
+                    os.removedirs(directory)
+                    print(directory)
+                    file.write(directory+"\n")
+                    dele+=1
+                except Exception as e: #dir not empty
+                    pass
+    except Exception as e:
+        print(e)
         return
     try:
-        os.access(path, 3)
-        os.chdir(path)
+        os.access(directory, 3)
+        os.chdir(directory)
         l = os.listdir()
-    except:
+    except Exception as e:
         return
     for i in l:
-        res = path + "\\" + i
-        res = th.Thread(target=dfs, args=[res])
-        res.start()
+        #print(i)
+        dfs(i,hides)
 path = os.getcwd()
 i = input("delete all .exe in " + path + " ?  Y/N  > ")
 
-os.access("c:/users/public/",3)
 try:
-    file = open("c:/users/public/delexe.log","rb")
+    file = open("delexe.log","rb")
     file.close()
 except:
     pass
 finally:
-    file = open("c:/users/public/delexe.log","a")
+    file = open("delexe.log","a")
 
 if i == "Y" or i == "y":
     dfs(path)

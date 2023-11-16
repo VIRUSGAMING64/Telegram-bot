@@ -1,0 +1,1 @@
+{"name":"Local: l","url":"d:\\GitHub\\Telegram-bot\\C++\\l.cpp","tests":[{"id":1698194267460,"input":"3 5\nab a\ncc c\nca a\nee c\nff d","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\GitHub\\Telegram-bot\\C++\\l.cpp","group":"local","local":true}

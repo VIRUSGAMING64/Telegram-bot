@@ -1,0 +1,16 @@
+{
+    "cph.general.saveLocation": "",
+    "files.associations": {
+        "numeric": "cpp",
+        "map": "cpp",
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp"
+    }
+}
