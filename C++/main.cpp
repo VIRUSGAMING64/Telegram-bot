@@ -1,145 +1,107 @@
-#pragma GCC Optimize("Ofast")
-#include "bits/stdc++.h"
-// #include "ext/pb_ds/assoc_container.hpp"
-// #include "ext/pb_ds/tree_policy.hpp"
-// using namespace __gnu_pbds;
-#ifdef LOCAL
-#define FAST_COMPILE
-#endif
-#ifndef FAST_COMPILE
-#ifdef LOCAL
-#include "includes/debug/debug.h"
-#include "includes/nums/floatx.hpp"
-#include "includes/ttmath/ttmath.h"
-#include "includes/json/json.hpp"
-#include <omp.h>
-#include <unistd.h>
-#include "includes/win/api.hpp"
-#include <windows.h>
-using namespace literals;
-using namespace flx;
-using namespace ttmath;
-using namespace nlohmann;
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
-using namespace chrono;
-#endif
-#endif
-#ifdef FAST_COMPILE
-using namespace std;
-#define debug
-#endif
-#ifndef LOCAL
-using namespace std;
-#define debug
-#endif
-#define pb push_back
+using namespace __gnu_pbds;
 #define ll long long
-#define PII pair<ll, ll>
-#define ull unsigned ll
-#define VI vector<ll>
-#define VII vector<VI>
-#define all(x) x.begin(), x.end()
-#define ld long double
-#define fx ld // antes estaba otra cosa
-#define ull unsigned ll
-#define S second
+#define pb push_back
 #define F first
-#define THREAD_NUM 32
+#define S second
+#define MAXN 2010000
 #define MOD 998244353
-const ll INF = 1e18, MAXN = 2e5 + 5;
-// typedef tree<ll, null_type, less_equal<ll>,rb_tree_tag, tree_order_statistics_node_update> TREE;
+#define SU(x) ((x * x + x) / 2)
+typedef tree<ll, null_type, less_equal<ll>,
+             rb_tree_tag, tree_order_statistics_node_update>
+    TREE;
 
-class poll
+class ST
 {
 public:
-    double x, y;
-    poll(double _x, double _y)
+    ll tam;
+    ll atm;
+    vector<ll> a;
+    vector<ll> st;
+    vector<ll> lazy;
+    ST() {}
+    ST(vector<ll> _a)
     {
-        x = _x;
-        y = _y;
+        atm = _a.size();
+        tam = atm * 4 + 40;
+        a = _a;
+        st.resize(tam);
+        lazy.resize(tam);
+        build(1, 0, atm - 1);
     }
-    poll(pair<double, double> a)
+    void prop(ll n, ll l, ll r)
     {
-        x = a.first;
-        y = a.second;
+        lazy[n] %= 2;
+        if (lazy[n] == 0)
+            return;
+        st[n] = (r - l + 1) - st[n];
+        if (l != r)
+        {
+            lazy[n * 2] += lazy[n];
+            lazy[n * 2 + 1] += lazy[n];
+        }
+        lazy[n] = 0;
     }
-    poll() {}
-    double MANJ(poll a)
+    void build(ll n, ll l, ll r)
     {
-        return (fabs(a.x - x) + fabs(a.y - y));
+        if (l == r)
+        {
+            st[n] = (l == a[l]);
+            return;
+        }
+        ll m = (l + r) / 2;
+        build(n * 2, l, m);
+        build(n * 2 + 1, m + 1, r);
+        st[n] = st[n * 2] + st[n * 2 + 1];
     }
-    double EUC(poll a)
+    ll query(ll n, ll l, ll r, ll a, ll b)
     {
-        double R1 = fabs(a.y - y);
-        double R2 = fabs(a.x - x);
-        return sqrt(R1 * R1 + R2 * R2);
+        prop(n, l, r);
+        if (l > b || r < a)
+            return 0;
+        if (l >= a && r <= b)
+            return st[n];
+        ll m = (l + r) / 2;
+        ll q1 = query(n * 2, l, m, a, b);
+        ll q2 = query(n * 2 + 1, m + 1, r, a, b);
+        return q1 + q2;
     }
-    friend istream &operator>>(istream &in, poll &a)
+    void update(ll n, ll l, ll r, ll a, ll b, ll x)
     {
-        in >> a.x >> a.y;
-        return in;
+        prop(n, l, r);
+        if (l > b || r < a)
+            return;
+        if (l >= a && r <= b)
+        {
+            lazy[n] += x;
+            prop(n, l, r);
+            return;
+        }
+        ll m = (l + r) / 2;
+        update(n * 2, l, m, a, b, x);
+        update(n * 2 + 1, m + 1, r, a, b, x);
+        st[n] = st[n * 2] + st[n * 2 + 1];
     }
 };
-ll F(ll a, ll b)
-{
-    ll c;
-    c = max(a, b);
-    return c;
-}
-void build(ll n, ll l, ll r)
-{
-    if (l == r)
-    {
-        st[n] = a[l - 1] - a[l];
-        return;
-    }
-    ll m = (l + r) / 2;
-    build(n * 2, l, m);
-    build(n * 2 + 1, m + 1, r);
-    st[n] = F(st[n * 2], st[n * 2 + 1]);
-}
-ll query(ll n, ll l, ll r, ll a, ll b)
-{
-    if (r < a || l > b)
-        return -INF;
-    if (l >= a && r <= b)
-        return st[n];
-    ll m = (l + r) / 2;
-    auto q1 = query(n * 2, l, m, a, b);
-    auto q2 = query(n * 2 + 1, m + 1, r, a, b);
-    return F(q1, q2);
-}
-void update(ll n, ll l, ll r, ll pos, ll val)
-{
-    if (l == r)
-    {
-        a[l] = val;
-        st[n] = a[l - 1] - a[l];
-        return;
-    }
-    ll m = (l + r) / 2;
-    if (pos <= m)
-    {
-        update(n * 2, l, m, pos, val);
-    }
-    else
-    {
-        update(n * 2 + 1, m + 1, r, pos, val);
-    }
-    st[n] = F(st[n * 2], st[n * 2 + 1]);
-}
 
-vector<ll> a;
-vector<ll> st;
+ll bpow(ll &a,ll e,const ll &mod){
+    if(e == 0)return 1;
+    if(e == 1)return a;
+    ll t = bpow(a,e/2,mod);
+    t = (t%mod*t%mod)%mod;
+    if(e & 1){
+        t = (t%mod * a%mod)%mod;
+    }
+    return t;
+}
+/*
+un record es j < i and a[j] < a[i] para todo J de 0 a i-1
+*/
 
 signed main()
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int t = 1;
-    cin >> t;
-    while (t--)
-    {
-
-    }
+    
 }

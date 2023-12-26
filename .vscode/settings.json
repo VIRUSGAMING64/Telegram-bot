@@ -90,7 +90,9 @@
         "valarray": "cpp",
         "variant": "cpp",
         "ciso646": "cpp",
-        "rope": "cpp"
+        "rope": "cpp",
+        "version": "cpp",
+        "*.rh": "cpp"
     },
     "cph.general.onceMaintainerMessage": false,
     "[python]": {
