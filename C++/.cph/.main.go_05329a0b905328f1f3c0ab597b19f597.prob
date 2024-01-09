@@ -1,0 +1,1 @@
+{"name":"Local: main","url":"d:\\GitHub\\Telegram-bot\\C++\\main.go","tests":[{"id":1704772665405,"input":"4 1 3\n","output":"7"},{"id":1704772671407,"input":"1000000000 141421 173205","output":"34076506"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\GitHub\\Telegram-bot\\C++\\main.go","group":"local","local":true}

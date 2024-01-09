@@ -1,16 +1,17 @@
 {
     "configurations": [
         {
-            "name": "C/C++: g++ Compilar y depurar el archivo activo",
+            "name": "C/C++: g++.exe Compilar y depurar el archivo activo",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "d:\\SOFTWARE\\mingw64\\bin",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "d:\\SOFTWARE\\mingw64\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Habilitar la impresión con sangría para gdb",
@@ -23,8 +24,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc compilar archivo activo",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "preLaunchTask": "C/C++: g++.exe compilar archivo activo"
         }
     ],
     "version": "2.0.0"

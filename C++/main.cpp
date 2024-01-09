@@ -4,104 +4,68 @@
 using namespace std;
 using namespace __gnu_pbds;
 #define ll long long
+#define u_ll unsigned ll
 #define pb push_back
 #define F first
 #define S second
-#define MAXN 2010000
-#define MOD 998244353
-#define SU(x) ((x * x + x) / 2)
+#define all(x) (x).begin(), (x).end()
+using namespace std;
+#define MAXN 1100000
+#define MOD 1000000007
+#define INF 100000000000000000ll
 typedef tree<ll, null_type, less_equal<ll>,
              rb_tree_tag, tree_order_statistics_node_update>
     TREE;
 
-class ST
+ll mult(ll a, ll b)
 {
-public:
-    ll tam;
-    ll atm;
-    vector<ll> a;
-    vector<ll> st;
-    vector<ll> lazy;
-    ST() {}
-    ST(vector<ll> _a)
+    return (a % MOD * (b % MOD)) % MOD;
+}
+ll bpow(ll a, ll e)
+{
+    if (e == 0)
+        return 1;
+    if (e == 1)
+        return a;
+    ll t = bpow(a, e / 2) % MOD;
+    t = mult(t, t);
+    if (e & 1)
     {
-        atm = _a.size();
-        tam = atm * 4 + 40;
-        a = _a;
-        st.resize(tam);
-        lazy.resize(tam);
-        build(1, 0, atm - 1);
-    }
-    void prop(ll n, ll l, ll r)
-    {
-        lazy[n] %= 2;
-        if (lazy[n] == 0)
-            return;
-        st[n] = (r - l + 1) - st[n];
-        if (l != r)
-        {
-            lazy[n * 2] += lazy[n];
-            lazy[n * 2 + 1] += lazy[n];
-        }
-        lazy[n] = 0;
-    }
-    void build(ll n, ll l, ll r)
-    {
-        if (l == r)
-        {
-            st[n] = (l == a[l]);
-            return;
-        }
-        ll m = (l + r) / 2;
-        build(n * 2, l, m);
-        build(n * 2 + 1, m + 1, r);
-        st[n] = st[n * 2] + st[n * 2 + 1];
-    }
-    ll query(ll n, ll l, ll r, ll a, ll b)
-    {
-        prop(n, l, r);
-        if (l > b || r < a)
-            return 0;
-        if (l >= a && r <= b)
-            return st[n];
-        ll m = (l + r) / 2;
-        ll q1 = query(n * 2, l, m, a, b);
-        ll q2 = query(n * 2 + 1, m + 1, r, a, b);
-        return q1 + q2;
-    }
-    void update(ll n, ll l, ll r, ll a, ll b, ll x)
-    {
-        prop(n, l, r);
-        if (l > b || r < a)
-            return;
-        if (l >= a && r <= b)
-        {
-            lazy[n] += x;
-            prop(n, l, r);
-            return;
-        }
-        ll m = (l + r) / 2;
-        update(n * 2, l, m, a, b, x);
-        update(n * 2 + 1, m + 1, r, a, b, x);
-        st[n] = st[n * 2] + st[n * 2 + 1];
-    }
-};
-
-ll bpow(ll &a,ll e,const ll &mod){
-    if(e == 0)return 1;
-    if(e == 1)return a;
-    ll t = bpow(a,e/2,mod);
-    t = (t%mod*t%mod)%mod;
-    if(e & 1){
-        t = (t%mod * a%mod)%mod;
+        t = mult(t, a);
     }
     return t;
 }
-/*
-un record es j < i and a[j] < a[i] para todo J de 0 a i-1
-*/
 
-signed main()
+bool cmp(vector::_ForwardIterator poi, int va)
 {
     
+    if (((val * a) + (n - val) * b) < i)
+        return true;
+    return false;
+}
+
+void sol()
+{
+
+    ll n, a, b;
+    cin >> a >> b >> n;
+    if (a > b)
+    {
+        swap(a, b);
+    }
+    vector<int> fi;
+    for (int i = 0; i <= n; i++)
+    {
+        fi.push_back(i);
+    }
+    for (int i = n * a; i <= n * b; i++)
+    {
+        ll k = -1;
+        auto pos = lower_bound(fi.begin(), fi.end(), i, cmp) - fi.begin();
+        cout << pos << endl;
+    }
+}
+signed main()
+{
+    sol();
 }
